@@ -10,7 +10,8 @@ class IdsPlease::GooglePlus < IdsPlease::BaseParser
     if link.host == 'google.com'
       link.path.split('/')[1]
     else
-      link.path.match(/\/(\d{2,})\//).try(:[], 1)
+      matched = link.path.match(/\/(\d{2,})\//)
+      matched[1] if matched
     end
   end
 

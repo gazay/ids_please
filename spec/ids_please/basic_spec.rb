@@ -9,7 +9,7 @@ describe IdsPlease do
         http://vk.com/vk_acc
         https://twitter.com/twi_acc
         https://vimeo.com/vimeo_acc
-        https://plus.google.com/gp_acc
+        https://plus.google.com/2/u/b/12341234/1234/asdfasd
         https://soundcloud.com/sc_acc
         https://youtube.com/channels/yb_acc
         http://tumblr-acc.tumblr.com
@@ -22,6 +22,7 @@ describe IdsPlease do
 
     it 'not recognizes wrong links' do
       recognizer = IdsPlease.new(*not_recognazible_links)
+      recognizer.recognize
       expect(recognizer.recognized.values.flatten.count).to eq(0)
     end
 
@@ -56,7 +57,7 @@ describe IdsPlease do
       end
 
       it 'get right id from google+ link' do
-        expect(@recognizer.parsed['GooglePlus'].first).to eq('gp_acc')
+        expect(@recognizer.parsed['GooglePlus'].first).to eq('12341234')
       end
 
       it 'get right id from soundcloud link' do

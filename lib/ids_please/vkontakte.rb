@@ -10,7 +10,7 @@ class IdsPlease::Vkontakte < IdsPlease::BaseParser
     if link.path =~ /id|club/
       id = link.path.sub(/\A\/id|\A\/club/, '')
       id.split(/[\/\?#]/).first
-    elsif
+    else
       link.path.split('/')[1]
     end
   end
