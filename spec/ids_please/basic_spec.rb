@@ -9,7 +9,7 @@ describe IdsPlease do
         http://vk.com/vk_acc
         https://twitter.com/twi_acc
         https://vimeo.com/vimeo_acc
-        https://plus.google.com/2/u/b/12341234/1234/asdfasd
+        https://plus.google.com/12341234
         https://soundcloud.com/sc_acc
         https://youtube.com/channels/yb_acc
         http://tumblr-acc.tumblr.com
