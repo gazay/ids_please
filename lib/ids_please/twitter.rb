@@ -1,4 +1,4 @@
-class IdsPlease::Twitter < IdsPlease::BaseNetwork
+class IdsPlease::Twitter < IdsPlease::BaseParser
 
   MASK = /twitter/i
 

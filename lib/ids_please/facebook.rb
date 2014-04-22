@@ -1,4 +1,4 @@
-class IdsPlease::Facebook < IdsPlease::BaseNetwork
+class IdsPlease::Facebook < IdsPlease::BaseParser
 
   MASK = /fb\.me|fb\.com|facebook/i
 

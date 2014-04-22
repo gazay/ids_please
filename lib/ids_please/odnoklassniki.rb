@@ -1,4 +1,4 @@
-class IdsPlease::Odnoklassniki < IdsPlease::BaseNetwork
+class IdsPlease::Odnoklassniki < IdsPlease::BaseParser
 
   MASK = /odnoklassniki/i
 

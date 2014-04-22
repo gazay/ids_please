@@ -1,4 +1,4 @@
-class IdsPlease::Instagram < IdsPlease::BaseNetwork
+class IdsPlease::Instagram < IdsPlease::BaseParser
 
   MASK = /instagr/i
 

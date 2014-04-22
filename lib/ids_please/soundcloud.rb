@@ -1,4 +1,4 @@
-class IdsPlease::Soundcloud < IdsPlease::BaseNetwork
+class IdsPlease::Soundcloud < IdsPlease::BaseParser
 
   MASK = /snd\.cc|soundcloud/i
 

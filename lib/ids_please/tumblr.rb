@@ -1,4 +1,4 @@
-class IdsPlease::Tumblr < IdsPlease::BaseNetwork
+class IdsPlease::Tumblr < IdsPlease::BaseParser
 
   MASK = /tumblr/i
 

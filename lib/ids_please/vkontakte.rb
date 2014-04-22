@@ -1,4 +1,4 @@
-class IdsPlease::Vkontakte < IdsPlease::BaseNetwork
+class IdsPlease::Vkontakte < IdsPlease::BaseParser
 
   MASK = /vk\.com|vkontakte/i
 

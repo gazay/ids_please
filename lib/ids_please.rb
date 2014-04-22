@@ -1,4 +1,3 @@
-Dir[File.dirname(__FILE__) + '/ids_please/*.rb'].each {|file| require file }
 require 'uri'
 require 'cgi'
 
@@ -65,3 +64,5 @@ class IdsPlease
   end
 
 end
+
+Dir[File.dirname(__FILE__) + '/ids_please/*.rb'].each {|file| require file }

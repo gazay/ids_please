@@ -1,4 +1,4 @@
-class IdsPlease::GooglePlus < IdsPlease::BaseNetwork
+class IdsPlease::GooglePlus < IdsPlease::BaseParser
 
   MASK = /google/i
 

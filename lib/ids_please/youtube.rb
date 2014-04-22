@@ -1,4 +1,4 @@
-class IdsPlease::Youtube < IdsPlease::BaseNetwork
+class IdsPlease::Youtube < IdsPlease::BaseParser
 
   MASK = /youtu\.be|youtube/i
 
