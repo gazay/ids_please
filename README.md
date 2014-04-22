@@ -61,6 +61,8 @@ Social networks supported at the moment:
 
 * @gazay
 
+Special thanks to @ai, @yaroslav, @whitequark
+
 ## Notes
 
 Gem named under an impression of an awesome game called [Papers, please](http://papersplea.se/)
