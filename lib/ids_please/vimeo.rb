@@ -1,5 +1,7 @@
-class IdsPlease::Vimeo < IdsPlease::BaseParser
+class IdsPlease
+  class Vimeo < IdsPlease::BaseParser
 
-  MASK = /vimeo/i
+    MASK = /vimeo/i
 
+  end
 end

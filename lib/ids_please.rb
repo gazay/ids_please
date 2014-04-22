@@ -1,5 +1,16 @@
 require 'uri'
 require 'cgi'
+require_relative 'ids_please/base_parser'
+require_relative 'ids_please/facebook'
+require_relative 'ids_please/google_plus'
+require_relative 'ids_please/instagram'
+require_relative 'ids_please/twitter'
+require_relative 'ids_please/tumblr'
+require_relative 'ids_please/vimeo'
+require_relative 'ids_please/youtube'
+require_relative 'ids_please/soundcloud'
+require_relative 'ids_please/vkontakte'
+require_relative 'ids_please/odnoklassniki'
 
 class IdsPlease
 
@@ -63,10 +74,4 @@ class IdsPlease
     end
   end
 
-end
-
-require_relative 'ids_please/base_parser'
-Dir[File.dirname(__FILE__) + '/ids_please/*.rb'].each do |file|
-  next if file =~ /base_parser/
-  require file
 end
