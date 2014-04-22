@@ -65,4 +65,8 @@ class IdsPlease
 
 end
 
-Dir[File.dirname(__FILE__) + '/ids_please/*.rb'].each {|file| require file }
+require_relative 'ids_please/base_parser'
+Dir[File.dirname(__FILE__) + '/ids_please/*.rb'].each do |file|
+  next if file =~ /base_parser/
+  require file
+end
