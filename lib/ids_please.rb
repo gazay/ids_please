@@ -3,7 +3,7 @@ require 'cgi'
 
 class IdsPlease
 
-  VERSION = '0.0.2'
+  VERSION = '0.0.3'
 
   attr_accessor :original, :recognized, :unrecognized, :options, :parsed
 
