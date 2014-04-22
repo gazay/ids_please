@@ -8,6 +8,18 @@ through social networks API (as I do). And you don't want to write or double you
 code from project to project to do this. So I wrote this gem to store all this logic
 in one place.
 
+## Installation
+
+```bash
+gem install ids_please
+```
+
+Or in Gemfile
+
+```ruby
+gem 'ids_please'
+```
+
 ## Usage
 
 You can use this gem to get ids from links:
