@@ -14,11 +14,10 @@ class IdsPlease
     private
 
     def self.parse_link(link)
-      if link.host == 'google.com'
-        link.path.split('/')[1]
-      else
-        matched = link.path.match(/\/(\d{2,})/)
-        matched[1] if matched
+      if matched = link.path.match(/\/\+(\w+)/)
+        matched[1]
+      elsif matched = link.path.match(/\/(\d{2,})/)
+        matched[1]
       end
     end
 
