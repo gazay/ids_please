@@ -1,12 +1,12 @@
-# Ids, please
+# IDs, please
 
-Helps to get ids or screen names from links to social accounts.
+Get social network IDs or screen names from links to social network accounts.
 
-Sometimes you need to get ids or screen names from links to social accounts.
-Maybe to store not whole link in your db, maybe to work with those accounts
-through social networks API (as I do). And you don't want to write or double your
-code from project to project to do this. So I wrote this gem to store all this logic
-in one place.
+Sometimes you need to get a social network account name from a link —
+to store a screen name in yor database instead of parsing the link every time,
+or maybe to work with these accounts using social network APIs (as I do).
+Would be easier to have a library that extracts this kind of information
+from all known social networks for your pleasure.
 
 Sponsored by [Evil Martians](http://evilmartians.com).
 
@@ -16,7 +16,7 @@ Sponsored by [Evil Martians](http://evilmartians.com).
 gem install ids_please
 ```
 
-Or in Gemfile
+Or, put this in your Gemfile:
 
 ```ruby
 gem 'ids_please'
@@ -24,7 +24,7 @@ gem 'ids_please'
 
 ## Usage
 
-You can use this gem to get ids from links:
+This is how you get social IDs from from links:
 
 ```ruby
 ids = IdsPlease.new('https://twitter.com/gazay', 'http://facebook.com/alexey.gaziev')
@@ -35,7 +35,7 @@ puts ids.parsed['Facebook'] # => "alexey.gaziev"
 puts ids.original           # => ["https://twitter.com/gazay", "http://facebook.com/alexey.gaziev"]
 ```
 
-Or you can just check that link relates or not to some social network:
+Or you can just check that the link is for a known social network:
 
 ```ruby
 ids = IdsPlease.new('https://twitter.com/gazay', 'http://some-unknown-network.com/gazay')
@@ -44,7 +44,7 @@ puts ids.recognized   # => {"Twitter"=>[#<URI::HTTP:0x007fea3bba7e30 URL:http://
 puts ids.unrecognized # => ["http://some-unknown-network.com/gazay"]
 ```
 
-Right now gem supports next social networks:
+Social networks supported at the moment:
 
 * Facebook
 * Twitter
@@ -63,7 +63,7 @@ Right now gem supports next social networks:
 
 ## Notes
 
-Gem named under impression of awesome game [Papers, please](http://papersplea.se/)
+Gem named under an impression of an awesome game called [Papers, please](http://papersplea.se/)
 
 ## License
 
