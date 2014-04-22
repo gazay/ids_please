@@ -18,18 +18,18 @@ class IdsPlease
 
   attr_accessor :original, :recognized, :unrecognized, :parsed
 
-  SOCIAL_NETWORKS = %w(
-    GooglePlus
-    Vkontakte
-    Twitter
-    Facebook
-    Instagram
-    Soundcloud
-    Vimeo
-    Youtube
-    Odnoklassniki
-    Tumblr
-  )
+  SOCIAL_NETWORKS = {
+    google_plus:   IdsPlease::GooglePlus,
+    vkontakte:     IdsPlease::Vkontakte,
+    twitter:       IdsPlease::Twitter,
+    facebook:      IdsPlease::Facebook,
+    instagram:     IdsPlease::Instagram,
+    soundcloud:    IdsPlease::Soundcloud,
+    vimeo:         IdsPlease::Vimeo,
+    youtube:       IdsPlease::Youtube,
+    odnoklassniki: IdsPlease::Odnoklassniki,
+    tumblr:        IdsPlease::Tumblr
+  }
 
   def initialize(*args)
     duped_args = args.dup
@@ -45,32 +45,25 @@ class IdsPlease
   def parse
     recognize
     @parsed = {}
-    recognized.each do |klass_name, links|
-      @parsed[klass_name] ||= []
-      @parsed[klass_name] += parser(klass_name).parse(links)
+    recognized.each do |network_sym, links|
+      @parsed[network_sym] ||= []
+      @parsed[network_sym] += SOCIAL_NETWORKS[network_sym].parse(links)
     end
   end
 
   private
 
   def recognize_link(link)
-    network, handle = nil
     link = "http://#{link}" unless link =~ /\Ahttps?:\/\//
     parsed_link = URI(URI.encode(link))
-    SOCIAL_NETWORKS.each do |network|
-      if parsed_link.host =~ parser(network)::MASK
-        recognized[network] ||= []
-        recognized[network] << parsed_link
+    SOCIAL_NETWORKS.each do |network_sym, network|
+      if parsed_link.host =~ network::MASK
+        recognized[network_sym] ||= []
+        recognized[network_sym] << parsed_link
         return
       end
     end
     unrecognized << link
-  end
-
-  def parser(name)
-    "IdsPlease::#{name}".split('::').inject(Module) do |acc, val|
-      acc.const_get(val)
-    end
   end
 
 end

@@ -37,39 +37,39 @@ describe IdsPlease do
       end
 
       it 'get right id from facebook link' do
-        expect(@recognizer.parsed['Facebook'].first).to eq('fb_acc')
+        expect(@recognizer.parsed[:facebook].first).to eq('fb_acc')
       end
 
       it 'get right id from instagram link' do
-        expect(@recognizer.parsed['Instagram'].first).to eq('inst_acc')
+        expect(@recognizer.parsed[:instagram].first).to eq('inst_acc')
       end
 
       it 'get right id from vk link' do
-        expect(@recognizer.parsed['Vkontakte'].first).to eq('vk_acc')
+        expect(@recognizer.parsed[:vkontakte].first).to eq('vk_acc')
       end
 
       it 'get right id from twitter link' do
-        expect(@recognizer.parsed['Twitter'].first).to eq('twi_acc')
+        expect(@recognizer.parsed[:twitter].first).to eq('twi_acc')
       end
 
       it 'get right id from vimeo link' do
-        expect(@recognizer.parsed['Vimeo'].first).to eq('vimeo_acc')
+        expect(@recognizer.parsed[:vimeo].first).to eq('vimeo_acc')
       end
 
       it 'get right id from google+ link' do
-        expect(@recognizer.parsed['GooglePlus'].first).to eq('12341234')
+        expect(@recognizer.parsed[:google_plus].first).to eq('12341234')
       end
 
       it 'get right id from soundcloud link' do
-        expect(@recognizer.parsed['Soundcloud'].first).to eq('sc_acc')
+        expect(@recognizer.parsed[:soundcloud].first).to eq('sc_acc')
       end
 
       it 'get right id from youtube link' do
-        expect(@recognizer.parsed['Youtube'].first).to eq('yb_acc')
+        expect(@recognizer.parsed[:youtube].first).to eq('yb_acc')
       end
 
       it 'get right id from tumblr link' do
-        expect(@recognizer.parsed['Tumblr'].first).to eq('tumblr-acc')
+        expect(@recognizer.parsed[:tumblr].first).to eq('tumblr-acc')
       end
 
     end

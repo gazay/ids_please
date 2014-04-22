@@ -3,9 +3,15 @@ class IdsPlease
 
     MASK = /google/i
 
+    def self.to_sym
+      :google_plus
+    end
+
     def self.parse(links)
       links.map { |l| parse_link(l) }.compact
     end
+
+    private
 
     def self.parse_link(link)
       if link.host == 'google.com'
