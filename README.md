@@ -8,6 +8,8 @@ through social networks API (as I do). And you don't want to write or double you
 code from project to project to do this. So I wrote this gem to store all this logic
 in one place.
 
+Sponsored by [Evil Martians](http://evilmartians.com).
+
 ## Installation
 
 ```bash
