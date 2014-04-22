@@ -16,7 +16,7 @@ class IdsPlease
 
   VERSION = '0.0.3'
 
-  attr_accessor :original, :recognized, :unrecognized, :options, :parsed
+  attr_accessor :original, :recognized, :unrecognized, :parsed
 
   SOCIAL_NETWORKS = %w(
     GooglePlus
@@ -33,7 +33,6 @@ class IdsPlease
 
   def initialize(*args)
     duped_args = args.dup
-    @options = duped_args.pop if duped_args.last.is_a?(Hash)
     @original = duped_args
   end
 
