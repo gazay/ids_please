@@ -29,8 +29,8 @@ This is how you get social IDs from from links:
 ```ruby
 ids = IdsPlease.new('https://twitter.com/gazay', 'http://facebook.com/alexey.gaziev')
 ids.parse
-puts ids.parsed['Twitter']  # => "gazay"
-puts ids.parsed['Facebook'] # => "alexey.gaziev"
+puts ids.parsed['Twitter']  # => ["gazay"]
+puts ids.parsed['Facebook'] # => ["alexey.gaziev"]
 
 puts ids.original           # => ["https://twitter.com/gazay", "http://facebook.com/alexey.gaziev"]
 ```
