@@ -29,8 +29,8 @@ This is how you get social IDs from from links:
 ```ruby
 ids = IdsPlease.new('https://twitter.com/gazay', 'http://facebook.com/alexey.gaziev')
 ids.parse
-puts ids.parsed['Twitter']  # => ["gazay"]
-puts ids.parsed['Facebook'] # => ["alexey.gaziev"]
+puts ids.parsed[:twitter]  # => ["gazay"]
+puts ids.parsed[:facebook] # => ["alexey.gaziev"]
 
 puts ids.original           # => ["https://twitter.com/gazay", "http://facebook.com/alexey.gaziev"]
 ```
@@ -40,7 +40,7 @@ Or you can just check that the link is for a known social network:
 ```ruby
 ids = IdsPlease.new('https://twitter.com/gazay', 'http://some-unknown-network.com/gazay')
 ids.recognize
-puts ids.recognized   # => {"Twitter"=>[#<URI::HTTP:0x007fea3bba7e30 URL:http://twitter.com/gazay>]}
+puts ids.recognized   # => {:twitter=>[#<URI::HTTP:0x007fea3bba7e30 URL:http://twitter.com/gazay>]}
 puts ids.unrecognized # => ["http://some-unknown-network.com/gazay"]
 ```
 
