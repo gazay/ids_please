@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.authors = ["gazay"]
   s.description = %q{Helps to get ids or screen names from links to social network accounts}
   s.summary = %q{Helps to get ids or screen names from links to social network accounts}
+  s.licenses = ['MIT']
   s.email = "alex.gaziev@gmail.com"
   s.extra_rdoc_files = ["LICENSE"]
   s.rdoc_options = ["--charset=UTF-8"]
