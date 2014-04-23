@@ -4,10 +4,12 @@ class IdsPlease
     MASK = /odnoklassniki/i
 
     def self.parse_link(link)
-      if link.path =~ /\/profile\//
-        link.path.split('/').last
-      elsif link.path.split('/').size == 2
-        link.path.split('/').last
+      if matched = link.path.match(/\/(\d{2,})/)
+        matched[1]
+      elsif link.path =~ /\/about\//
+        link.path.split('/')[-2]
+      elsif link.path.split('/').size >= 3
+        link.path.split('/')[2]
       end
     end
 

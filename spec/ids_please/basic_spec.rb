@@ -14,6 +14,8 @@ describe IdsPlease do
         https://soundcloud.com/sc_acc
         https://youtube.com/channels/yb_acc
         http://tumblr-acc.tumblr.com
+        http://odnoklassniki.com/profile/12341234/about
+        http://odnoklassniki.com/group/43214321/about?some=123
       )
 
     not_recognazible_links = %w(
@@ -71,6 +73,10 @@ describe IdsPlease do
 
       it 'get right id from tumblr link' do
         expect(@recognizer.parsed[:tumblr].first).to eq('tumblr-acc')
+      end
+
+      it 'get right id from odnoklassniki link' do
+        expect(@recognizer.parsed[:odnoklassniki]).to eq(['12341234', '43214321'])
       end
 
     end
