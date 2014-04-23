@@ -8,7 +8,7 @@ class IdsPlease
     def self.parse(links)
       links.map do |l|
         id = parse_link(l)
-        matched_id = id.match(valid_id_regex)
+        matched_id = id.match(valid_id_regex) if id
         matched_id[1] if matched_id
       end.compact
     end

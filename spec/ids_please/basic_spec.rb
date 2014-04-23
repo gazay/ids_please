@@ -24,10 +24,22 @@ describe IdsPlease do
         http://vka.com/not_recognized
       )
 
+    not_parseble_links = %w(
+        http://vk.com
+        http://soundcloud.com
+      )
+
     it 'not recognizes wrong links' do
       recognizer = IdsPlease.new(*not_recognazible_links)
       recognizer.recognize
       expect(recognizer.recognized.values.flatten.count).to eq(0)
+    end
+
+    it 'not parse wrong links' do
+      @recognizer = IdsPlease.new(*not_parseble_links)
+      @recognizer.parse
+      expect(@recognizer.parsed[:vkontakte]).to eq([])
+      expect(@recognizer.parsed[:soundcloud]).to eq([])
     end
 
     context 'recognize social networks properly' do
