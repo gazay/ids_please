@@ -6,7 +6,7 @@ class IdsPlease
     def self.parse_link(link)
       query = CGI.parse(link.query) if link.query && !link.query.empty?
 
-      if query && query['id']
+      if query && !query['id'].empty?
         query['id'].first
       elsif link.path =~ /\/pages\//
         link.path.split('/').last
