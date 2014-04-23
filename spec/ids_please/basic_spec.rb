@@ -5,6 +5,7 @@ describe IdsPlease do
   describe 'recognize' do
     recognazible_links = %w(
         https://www.facebook.com/fb_acc
+        https://www.facebook.com/fb_acc2<U+200>
         http://instagram.com/inst_acc
         http://vk.com/vk_acc
         https://twitter.com/twi_acc
@@ -40,7 +41,7 @@ describe IdsPlease do
       end
 
       it 'get right id from facebook link' do
-        expect(@recognizer.parsed[:facebook].first).to eq('fb_acc')
+        expect(@recognizer.parsed[:facebook]).to eq(['fb_acc', 'fb_acc2'])
       end
 
       it 'get right id from instagram link' do
@@ -60,7 +61,7 @@ describe IdsPlease do
       end
 
       it 'get right id from google+ link' do
-        expect(@recognizer.parsed[:google_plus]).to eq(['12341234', 'VladimirBokov'])
+        expect(@recognizer.parsed[:google_plus]).to eq(['12341234', '+VladimirBokov'])
       end
 
       it 'get right id from soundcloud link' do
