@@ -14,7 +14,7 @@ require_relative 'ids_please/odnoklassniki'
 
 class IdsPlease
 
-  VERSION = '1.0.1'
+  VERSION = '1.0.2'
 
   attr_accessor :original, :recognized, :unrecognized, :parsed
 
