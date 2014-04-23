@@ -10,6 +10,7 @@ describe IdsPlease do
         https://twitter.com/twi_acc
         https://vimeo.com/vimeo_acc
         https://plus.google.com/12341234
+        https://plus.google.com/+VladimirBokov
         https://soundcloud.com/sc_acc
         https://youtube.com/channels/yb_acc
         http://tumblr-acc.tumblr.com
@@ -57,7 +58,7 @@ describe IdsPlease do
       end
 
       it 'get right id from google+ link' do
-        expect(@recognizer.parsed[:google_plus].first).to eq('12341234')
+        expect(@recognizer.parsed[:google_plus]).to eq(['12341234', 'VladimirBokov'])
       end
 
       it 'get right id from soundcloud link' do
