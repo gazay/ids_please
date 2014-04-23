@@ -11,6 +11,7 @@ require_relative 'ids_please/youtube'
 require_relative 'ids_please/soundcloud'
 require_relative 'ids_please/vkontakte'
 require_relative 'ids_please/odnoklassniki'
+require_relative 'ids_please/moikrug'
 
 class IdsPlease
 
@@ -28,7 +29,8 @@ class IdsPlease
     IdsPlease::Vimeo,
     IdsPlease::Youtube,
     IdsPlease::Odnoklassniki,
-    IdsPlease::Tumblr
+    IdsPlease::Tumblr,
+    IdsPlease::Moikrug
   ]
 
   def initialize(*args)

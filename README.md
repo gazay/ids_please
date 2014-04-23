@@ -56,6 +56,7 @@ Social networks supported at the moment:
 * Vimeo
 * Vkontakte
 * Odnoklassniki
+* Moikrug
 
 ## Contributors
 

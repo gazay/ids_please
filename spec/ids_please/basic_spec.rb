@@ -17,6 +17,7 @@ describe IdsPlease do
         http://tumblr-acc.tumblr.com
         http://odnoklassniki.com/profile/12341234/about
         http://odnoklassniki.com/group/43214321/about?some=123
+        http://moikrug-acc.moikrug.ru
       )
 
     not_recognazible_links = %w(
@@ -90,6 +91,10 @@ describe IdsPlease do
 
       it 'get right id from odnoklassniki link' do
         expect(@recognizer.parsed[:odnoklassniki]).to eq(['12341234', '43214321'])
+      end
+
+      it 'get right id from moikrug link' do
+        expect(@recognizer.parsed[:moikrug].first).to eq('moikrug-acc')
       end
 
     end
