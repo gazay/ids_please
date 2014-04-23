@@ -4,9 +4,10 @@ class IdsPlease
     MASK = /fb\.me|fb\.com|facebook/i
 
     def self.parse_link(link)
-      if link.query && !link.query.empty?
-        query = CGI.parse(link.query)
-        query['id'].first if query.keys.include?('id')
+      query = CGI.parse(link.query) if link.query && !link.query.empty?
+
+      if query && query['id']
+        query['id'].first
       elsif link.path =~ /\/pages\//
         link.path.split('/').last
       else
