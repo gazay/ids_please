@@ -3,7 +3,7 @@
 Get social network IDs or screen names from links to social network accounts.
 
 Sometimes you need to get a social network account name from a link —
-to store a screen name in yor database instead of parsing the link every time,
+to store a screen name in your database instead of parsing the link every time,
 or maybe to work with these accounts using social network APIs (as I do).
 Would be easier to have a library that extracts this kind of information
 from all known social networks for your pleasure.
