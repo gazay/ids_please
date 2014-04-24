@@ -54,46 +54,57 @@ describe IdsPlease do
       end
 
       it 'get right id from facebook link' do
+        expect(@recognizer.recognized[:facebook].count).to eq(2)
         expect(@recognizer.parsed[:facebook]).to eq(['fb_acc', 'fb_acc2'])
       end
 
       it 'get right id from instagram link' do
+        expect(@recognizer.recognized[:instagram].count).to eq(1)
         expect(@recognizer.parsed[:instagram].first).to eq('inst_acc')
       end
 
       it 'get right id from vk link' do
+        expect(@recognizer.recognized[:vkontakte].count).to eq(1)
         expect(@recognizer.parsed[:vkontakte].first).to eq('vk_acc')
       end
 
       it 'get right id from twitter link' do
+        expect(@recognizer.recognized[:twitter].count).to eq(1)
         expect(@recognizer.parsed[:twitter].first).to eq('twi_acc')
       end
 
       it 'get right id from vimeo link' do
+        expect(@recognizer.recognized[:vimeo].count).to eq(1)
         expect(@recognizer.parsed[:vimeo].first).to eq('vimeo_acc')
       end
 
       it 'get right id from google+ link' do
+        expect(@recognizer.recognized[:google_plus].count).to eq(2)
         expect(@recognizer.parsed[:google_plus]).to eq(['12341234', '+VladimirBokov'])
       end
 
       it 'get right id from soundcloud link' do
+        expect(@recognizer.recognized[:soundcloud].count).to eq(1)
         expect(@recognizer.parsed[:soundcloud].first).to eq('sc_acc')
       end
 
       it 'get right id from youtube link' do
+        expect(@recognizer.recognized[:youtube].count).to eq(1)
         expect(@recognizer.parsed[:youtube].first).to eq('yb_acc')
       end
 
       it 'get right id from tumblr link' do
+        expect(@recognizer.recognized[:tumblr].count).to eq(1)
         expect(@recognizer.parsed[:tumblr].first).to eq('tumblr-acc')
       end
 
       it 'get right id from odnoklassniki link' do
+        expect(@recognizer.recognized[:odnoklassniki].count).to eq(2)
         expect(@recognizer.parsed[:odnoklassniki]).to eq(['12341234', '43214321'])
       end
 
       it 'get right id from moikrug link' do
+        expect(@recognizer.recognized[:moikrug].count).to eq(1)
         expect(@recognizer.parsed[:moikrug].first).to eq('moikrug-acc')
       end
 
