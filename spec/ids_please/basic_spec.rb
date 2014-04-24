@@ -34,6 +34,7 @@ describe IdsPlease do
       recognizer = IdsPlease.new(*not_recognazible_links)
       recognizer.recognize
       expect(recognizer.recognized.values.flatten.count).to eq(0)
+      expect(recognizer.unrecognized).to eq(not_recognazible_links)
     end
 
     it 'not parse wrong links' do
@@ -41,6 +42,7 @@ describe IdsPlease do
       @recognizer.parse
       expect(@recognizer.parsed[:vkontakte]).to eq([])
       expect(@recognizer.parsed[:soundcloud]).to eq([])
+      expect(@recognizer.unrecognized).to eq([])
     end
 
     context 'recognize social networks properly' do
