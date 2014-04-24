@@ -45,6 +45,12 @@ describe IdsPlease do
       expect(@recognizer.unrecognized).to eq([])
     end
 
+    it 'contains the original passed args' do
+      @recognizer = IdsPlease.new(*not_parseble_links)
+      @recognizer.parse
+      expect(@recognizer.original).to eq(not_parseble_links)
+    end
+
     context 'recognize social networks properly' do
       before :each do
         @recognizer = IdsPlease.new(*recognazible_links)
