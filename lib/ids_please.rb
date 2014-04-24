@@ -46,12 +46,9 @@ class IdsPlease
 
   def parse
     recognize
-    @parsed = {}
-    recognized.each do |network_sym, links|
-      parser = SOCIAL_NETWORKS.find { |sn| sn.to_sym == network_sym }
-
-      @parsed[network_sym] ||= []
-      @parsed[network_sym] += parser.parse(links)
+    @parsed = Hash.new { |hash, parser| hash[parser.to_sym] = [] }
+    recognized.each do |parser, links|
+      @parsed[parser].concat parser.parse(links)
     end
   end
 
@@ -62,8 +59,8 @@ class IdsPlease
     parsed_link = URI(URI.encode(link))
     SOCIAL_NETWORKS.each do |network|
       if parsed_link.host =~ network::MASK
-        recognized[network.to_sym] ||= []
-        recognized[network.to_sym] << parsed_link
+        recognized[network] ||= []
+        recognized[network] << parsed_link
         return
       end
     end
