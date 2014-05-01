@@ -6,6 +6,7 @@ require_relative 'ids_please/google_plus'
 require_relative 'ids_please/instagram'
 require_relative 'ids_please/blogger'
 require_relative 'ids_please/ameba'
+require_relative 'ids_please/livejournal'
 require_relative 'ids_please/linkedin'
 require_relative 'ids_please/pinterest'
 require_relative 'ids_please/reddit'
@@ -33,6 +34,7 @@ class IdsPlease
     IdsPlease::Blogger,
     IdsPlease::Ameba,
     IdsPlease::Linkedin,
+    IdsPlease::Livejournal,
     IdsPlease::Reddit,
     IdsPlease::Pinterest,
     IdsPlease::Soundcloud,

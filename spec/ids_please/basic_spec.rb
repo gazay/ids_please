@@ -8,6 +8,8 @@ describe IdsPlease do
       http://instagram.com/inst_acc
       http://pinterest.com/pinterest_acc
       http://blogger-acc.blogspot.com
+      http://livejournal-acc.livejournal.com
+      http://livejournal-acc2.livejournal.ru
       https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
       http://linkedin.com/pub/linkedin_acc
@@ -61,6 +63,10 @@ describe IdsPlease do
 
       it 'recognizes linkedin link' do
         expect(@recognizer.recognized[:linkedin].count).to eq(2)
+      end
+
+      it 'recognizes livejournal link' do
+        expect(@recognizer.recognized[:livejournal].count).to eq(2)
       end
 
       it 'recognizes instagram link' do
@@ -203,6 +209,10 @@ describe IdsPlease do
 
       it 'get right id from tumblr link' do
         expect(@recognizer.parsed[:tumblr].first).to eq('tumblr-acc')
+      end
+
+      it 'get right id from livejournal link' do
+        expect(@recognizer.parsed[:livejournal]).to eq(['livejournal-acc', 'livejournal-acc2'])
       end
 
       it 'get right id from odnoklassniki link' do
