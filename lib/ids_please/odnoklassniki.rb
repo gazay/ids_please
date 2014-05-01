@@ -3,6 +3,8 @@ class IdsPlease
 
     MASK = /odnoklassniki/i
 
+    private
+
     def self.parse_link(link)
       if matched = link.path.match(/\/(\d{2,})/)
         matched[1]

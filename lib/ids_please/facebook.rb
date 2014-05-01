@@ -3,6 +3,8 @@ class IdsPlease
 
     MASK = /fb\.me|fb\.com|facebook/i
 
+    private
+
     def self.parse_link(link)
       query = CGI.parse(link.query) if link.query && !link.query.empty?
 

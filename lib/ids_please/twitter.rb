@@ -3,6 +3,8 @@ class IdsPlease
 
     MASK = /twitter/i
 
+    private
+
     def self.parse_link(link)
       if link.path =~ /%23!/
         id = link.path.sub(/\A\/%23!\//, '')

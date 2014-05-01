@@ -6,6 +6,8 @@ describe IdsPlease do
       https://www.facebook.com/fb_acc
       https://www.facebook.com/fb_acc2<U+200>
       http://instagram.com/inst_acc
+      http://hi5.com/hi5_acc
+      http://www.hi5.com/profile.html?uid=12341234
       http://pinterest.com/pinterest_acc
       http://blogger-acc.blogspot.com
       http://livejournal-acc.livejournal.com
@@ -59,6 +61,10 @@ describe IdsPlease do
 
       it 'recognizes facebook link' do
         expect(@recognizer.recognized[:facebook].count).to eq(2)
+      end
+
+      it 'recognizes hi5 link' do
+        expect(@recognizer.recognized[:hi5].count).to eq(2)
       end
 
       it 'recognizes linkedin link' do
@@ -193,6 +199,10 @@ describe IdsPlease do
 
       it 'get right id from google+ link' do
         expect(@recognizer.parsed[:google_plus]).to eq(['12341234', '+VladimirBokov'])
+      end
+
+      it 'get right id from hi5 link' do
+        expect(@recognizer.parsed[:hi5]).to eq(['hi5_acc', '12341234'])
       end
 
       it 'get right id from soundcloud link' do

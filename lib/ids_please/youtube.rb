@@ -3,6 +3,8 @@ class IdsPlease
 
     MASK = /youtu\.be|youtube/i
 
+    private
+
     def self.parse_link(link)
       if link.path =~ /channels|user/
         link.path.split('/')[2]

@@ -7,6 +7,8 @@ class IdsPlease
       links.map { |l| parse_link(l) }.compact
     end
 
+    private
+
     def self.parse_link(link)
       if link.path =~ /id|club/
         id = link.path.sub(/\A\/id|\A\/club/, '')
