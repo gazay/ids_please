@@ -7,6 +7,8 @@ describe IdsPlease do
       https://www.facebook.com/fb_acc2<U+200>
       http://instagram.com/inst_acc
       http://pinterest.com/pinterest_acc
+      http://blogger-acc.blogspot.com
+      https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
       https://twitter.com/twi_acc
       https://vimeo.com/vimeo_acc
@@ -55,6 +57,10 @@ describe IdsPlease do
 
       it 'recognizes instagram link' do
         expect(@recognizer.recognized[:instagram].count).to eq(1)
+      end
+
+      it 'recognizes blogger link' do
+        expect(@recognizer.recognized[:blogger].count).to eq(2)
       end
 
       it 'recognizes pinterest link' do
@@ -137,6 +143,10 @@ describe IdsPlease do
 
       it 'get right id from pinterest link' do
         expect(@recognizer.parsed[:pinterest].first).to eq('pinterest_acc')
+      end
+
+      it 'get right id from blogger link' do
+        expect(@recognizer.parsed[:blogger]).to eq(['blogger-acc', '12341234'])
       end
 
       it 'get right id from vk link' do
