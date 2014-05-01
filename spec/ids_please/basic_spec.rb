@@ -10,6 +10,7 @@ describe IdsPlease do
       http://blogger-acc.blogspot.com
       https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
+      http://reddit.com/user/reddit_acc
       https://twitter.com/twi_acc
       https://vimeo.com/vimeo_acc
       https://plus.google.com/12341234
@@ -57,6 +58,10 @@ describe IdsPlease do
 
       it 'recognizes instagram link' do
         expect(@recognizer.recognized[:instagram].count).to eq(1)
+      end
+
+      it 'recognizes reddit link' do
+        expect(@recognizer.recognized[:reddit].count).to eq(1)
       end
 
       it 'recognizes blogger link' do
@@ -155,6 +160,10 @@ describe IdsPlease do
 
       it 'get right id from twitter link' do
         expect(@recognizer.parsed[:twitter].first).to eq('twi_acc')
+      end
+
+      it 'get right id from reddit link' do
+        expect(@recognizer.parsed[:reddit].first).to eq('reddit_acc')
       end
 
       it 'get right id from vimeo link' do

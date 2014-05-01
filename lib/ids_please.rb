@@ -6,6 +6,7 @@ require_relative 'ids_please/google_plus'
 require_relative 'ids_please/instagram'
 require_relative 'ids_please/blogger'
 require_relative 'ids_please/pinterest'
+require_relative 'ids_please/reddit'
 require_relative 'ids_please/twitter'
 require_relative 'ids_please/tumblr'
 require_relative 'ids_please/vimeo'
@@ -28,6 +29,7 @@ class IdsPlease
     IdsPlease::Facebook,
     IdsPlease::Instagram,
     IdsPlease::Blogger,
+    IdsPlease::Reddit,
     IdsPlease::Pinterest,
     IdsPlease::Soundcloud,
     IdsPlease::Vimeo,
