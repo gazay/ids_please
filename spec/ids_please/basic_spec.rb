@@ -10,6 +10,7 @@ describe IdsPlease do
       http://blogger-acc.blogspot.com
       https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
+      http://Ameblo.jp/ameba_acc
       http://reddit.com/user/reddit_acc
       https://twitter.com/twi_acc
       https://vimeo.com/vimeo_acc
@@ -96,6 +97,10 @@ describe IdsPlease do
         expect(@recognizer.recognized[:youtube].count).to eq(1)
       end
 
+      it 'recognizes ameba link' do
+        expect(@recognizer.recognized[:ameba].count).to eq(1)
+      end
+
       it 'recognizes tumblr link' do
         expect(@recognizer.recognized[:tumblr].count).to eq(1)
       end
@@ -180,6 +185,10 @@ describe IdsPlease do
 
       it 'get right id from youtube link' do
         expect(@recognizer.parsed[:youtube].first).to eq('yb_acc')
+      end
+
+      it 'get right id from ameba link' do
+        expect(@recognizer.parsed[:ameba].first).to eq('ameba_acc')
       end
 
       it 'get right id from tumblr link' do
