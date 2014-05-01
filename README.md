@@ -46,17 +46,24 @@ puts ids.unrecognized # => ["http://some-unknown-network.com/gazay"]
 
 Social networks supported at the moment:
 
-* Facebook
-* Twitter
-* Instagram
-* Soundcloud
-* GooglePlus
-* Youtube
-* Tumblr
-* Vimeo
-* Vkontakte
-* Odnoklassniki
-* Moikrug
+* [Facebook](https://www.facebook.com)
+* [Twitter](https://twitter.com)
+* [Instagram](http://instagram.com)
+* [Soundcloud](http://soundcloud.com)
+* [GooglePlus](https://plus.google.com)
+* [Youtube](http://www.youtube.com)
+* [Tumblr](http://tumblr.com)
+* [Vimeo](http://vimeo.com)
+* [Pinterest](http://pinterest.com)
+* [Blogger](http://blogger.com)
+* [Reddit](http://reddit.com)
+* [Ameba](http://ameblo.jp)
+* [Linkedin](http://linkedin.com)
+* [Livejournal](http://livejournal.com)
+* [Hi5](http://hi5.com)
+* [Vkontakte](http://vk.com)
+* [Odnoklassniki](http://odnoklassniki.ru)
+* [Moikrug](https://moikrug.ru)
 
 ## Contributors
 
