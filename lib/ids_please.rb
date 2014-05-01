@@ -4,6 +4,7 @@ require_relative 'ids_please/base_parser'
 require_relative 'ids_please/facebook'
 require_relative 'ids_please/google_plus'
 require_relative 'ids_please/instagram'
+require_relative 'ids_please/pinterest'
 require_relative 'ids_please/twitter'
 require_relative 'ids_please/tumblr'
 require_relative 'ids_please/vimeo'
@@ -25,6 +26,7 @@ class IdsPlease
     IdsPlease::Twitter,
     IdsPlease::Facebook,
     IdsPlease::Instagram,
+    IdsPlease::Pinterest,
     IdsPlease::Soundcloud,
     IdsPlease::Vimeo,
     IdsPlease::Youtube,

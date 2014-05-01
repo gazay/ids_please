@@ -7,6 +7,7 @@ describe IdsPlease do
         https://www.facebook.com/fb_acc
         https://www.facebook.com/fb_acc2<U+200>
         http://instagram.com/inst_acc
+        http://pinterest.com/pinterest_acc
         http://vk.com/vk_acc
         https://twitter.com/twi_acc
         https://vimeo.com/vimeo_acc
@@ -69,6 +70,11 @@ describe IdsPlease do
       it 'get right id from instagram link' do
         expect(@recognizer.recognized[:instagram].count).to eq(1)
         expect(@recognizer.parsed[:instagram].first).to eq('inst_acc')
+      end
+
+      it 'get right id from pinterest link' do
+        expect(@recognizer.recognized[:pinterest].count).to eq(1)
+        expect(@recognizer.parsed[:pinterest].first).to eq('pinterest_acc')
       end
 
       it 'get right id from vk link' do
