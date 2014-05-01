@@ -10,6 +10,8 @@ describe IdsPlease do
       http://blogger-acc.blogspot.com
       https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
+      http://linkedin.com/pub/linkedin_acc
+      http://www.linkedin.com/profile/view?id=12341234&trk=nav_responsive_tab_profile
       http://Ameblo.jp/ameba_acc
       http://reddit.com/user/reddit_acc
       https://twitter.com/twi_acc
@@ -55,6 +57,10 @@ describe IdsPlease do
 
       it 'recognizes facebook link' do
         expect(@recognizer.recognized[:facebook].count).to eq(2)
+      end
+
+      it 'recognizes linkedin link' do
+        expect(@recognizer.recognized[:linkedin].count).to eq(2)
       end
 
       it 'recognizes instagram link' do
@@ -145,6 +151,10 @@ describe IdsPlease do
 
       it 'get right id from facebook link' do
         expect(@recognizer.parsed[:facebook]).to eq(['fb_acc', 'fb_acc2'])
+      end
+
+      it 'get right id from linkedin link' do
+        expect(@recognizer.parsed[:linkedin]).to eq(['linkedin_acc', '12341234'])
       end
 
       it 'get right id from instagram link' do
