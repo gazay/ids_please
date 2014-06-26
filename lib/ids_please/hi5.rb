@@ -3,15 +3,17 @@ class IdsPlease
 
     MASK = /hi5/i
 
-    private
+    class << self
+      private
 
-    def self.parse_link(link)
-      query = CGI.parse(link.query) if link.query && !link.query.empty?
+      def parse_link(link)
+        query = CGI.parse(link.query) if link.query && !link.query.empty?
 
-      if query && !query['uid'].empty?
-        query['uid'].first
-      else
-        link.path.split('/')[1]
+        if query && !query['uid'].empty?
+          query['uid'].first
+        else
+          link.path.split('/')[1]
+        end
       end
     end
 
