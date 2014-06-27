@@ -3,11 +3,13 @@ class IdsPlease
 
     MASK = /tumblr/i
 
-    private
+    class << self
+      private
 
-    def self.parse_link(link)
-      return if link.host.sub('.tumblr.com', '') == link.host
-      link.host.sub('.tumblr.com', '')
+      def parse_link(link)
+        return if link.host.sub('.tumblr.com', '') == link.host
+        link.host.sub('.tumblr.com', '')
+      end
     end
 
   end

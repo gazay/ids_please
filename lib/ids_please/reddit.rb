@@ -3,10 +3,12 @@ class IdsPlease
 
     MASK = /reddit/i
 
-    private
+    class << self
+      private
 
-    def self.parse_link(link)
-      link.path.split('/')[2]
+      def parse_link(link)
+        link.path.split('/')[2]
+      end
     end
 
   end
