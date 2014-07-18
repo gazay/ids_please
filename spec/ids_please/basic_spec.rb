@@ -26,6 +26,7 @@ describe IdsPlease do
       https://youtube.com/channels/yb_acc
       http://tumblr-acc.tumblr.com
       http://odnoklassniki.com/profile/12341234/about
+      http://ok.ru/profile/12341234/about
       http://odnoklassniki.com/group/43214321/about?some=123
       http://moikrug-acc.moikrug.ru
     )
@@ -124,7 +125,7 @@ describe IdsPlease do
       end
 
       it 'recognizes odnoklassniki link' do
-        expect(@recognizer.recognized[:odnoklassniki].count).to eq(2)
+        expect(@recognizer.recognized[:odnoklassniki].count).to eq(3)
       end
 
       it 'recognizes moikrug link' do
@@ -226,7 +227,7 @@ describe IdsPlease do
       end
 
       it 'get right id from odnoklassniki link' do
-        expect(@recognizer.parsed[:odnoklassniki]).to eq(['12341234', '43214321'])
+        expect(@recognizer.parsed[:odnoklassniki].sort).to eq(['12341234', '43214321', '12341234'].sort)
       end
 
       it 'get right id from moikrug link' do

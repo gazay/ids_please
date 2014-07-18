@@ -1,7 +1,7 @@
 class IdsPlease
   class Odnoklassniki < IdsPlease::BaseParser
 
-    MASK = /odnoklassniki/i
+    MASK = /odnoklassniki|ok\.ru/i
 
     class << self
       private
