@@ -14,7 +14,7 @@ describe IdsPlease do
       http://livejournal-acc2.livejournal.ru
       https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
-      http://linkedin.com/pub/linkedin_acc
+      http://linkedin.com/in/xnutsive
       http://www.linkedin.com/profile/view?id=12341234&trk=nav_responsive_tab_profile
       http://Ameblo.jp/ameba_acc
       http://reddit.com/user/reddit_acc
@@ -167,7 +167,7 @@ describe IdsPlease do
       end
 
       it 'get right id from linkedin link' do
-        expect(@recognizer.parsed[:linkedin]).to eq(['linkedin_acc', '12341234'])
+        expect(@recognizer.parsed[:linkedin]).to eq(['xnutsive', '12341234'])
       end
 
       it 'get right id from instagram link' do
