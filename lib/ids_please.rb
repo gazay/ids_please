@@ -22,7 +22,7 @@ require_relative 'ids_please/moikrug'
 
 class IdsPlease
 
-  VERSION = '1.1.1'
+  VERSION = '1.1.2'
 
   attr_accessor :original, :unrecognized, :parsed
 
