@@ -11,7 +11,7 @@ class IdsPlease
 
         if query && !query['id'].empty?
           query['id'].first
-        elsif link.path =~ /\/pub\//
+        elsif link.path =~ /\/in\//
           link.path.split('/')[2]
         end
       end
