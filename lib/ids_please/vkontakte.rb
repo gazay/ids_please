@@ -11,8 +11,8 @@ class IdsPlease
       private
 
       def parse_link(link)
-        if link.path =~ /id|club/
-          id = link.path.sub(/\A\/id|\A\/club/, '')
+        if link.path =~ /id|club|public/
+          id = link.path.sub(/\A\/id|\A\/club|\A\/public/, '')
           id.split(/[\/\?#]/).first
         else
           link.path.split('/')[1]
