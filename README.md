@@ -1,6 +1,6 @@
 # IDs, please
 
-[![ids_please API Documentation](https://www.omniref.com/ruby/gems/ids_please.png)](https://www.omniref.com/ruby/gems/ids_please) [![Build Status](https://travis-ci.org/gazay/ids_please.svg)](https://codeclimate.com/github/gazay/ids_please)
+[![Build Status](https://travis-ci.org/gazay/ids_please.svg)](https://codeclimate.com/github/gazay/ids_please) [![ids_please API Documentation](https://www.omniref.com/ruby/gems/ids_please.png)](https://www.omniref.com/ruby/gems/ids_please)
 
 Get social network IDs or screen names from links to social network accounts.
 
