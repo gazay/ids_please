@@ -48,8 +48,7 @@ class IdsPlease
   ]
 
   def initialize(*args)
-    duped_args = args.dup
-    @original = duped_args
+    @original = args.dup
   end
 
   def recognize
