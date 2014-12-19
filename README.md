@@ -10,7 +10,7 @@ or maybe to work with these accounts using social network APIs (as I do).
 Would be easier to have a library that extracts this kind of information
 from all known social networks for your pleasure.
 
-<a href="https://evilmartians.com/?utm_source=evil-icons">
+<a href="https://evilmartians.com/?utm_source=ids_please">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
 </a>
 
