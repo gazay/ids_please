@@ -15,7 +15,7 @@ class IdsPlease
           id = link.path.sub(/\A\/id|\A\/club|\A\/public/, '')
           id.split(/[\/\?#]/).first
         else
-          link.path.split('/')[1]
+          super
         end
       end
     end
