@@ -13,6 +13,8 @@ class IdsPlease
           query['id'].first
         elsif link.path =~ /\/in\//
           link.path.split('/')[2]
+        elsif link.path =~ /\/company\//
+          link.path.split('/')[2]
         end
       end
     end
