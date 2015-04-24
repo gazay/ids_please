@@ -15,6 +15,7 @@ describe IdsPlease do
       https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
       http://vk.com/vk_acc
       http://linkedin.com/in/xnutsive
+      http://www.linkedin.com/company/evil-martians
       http://www.linkedin.com/profile/view?id=12341234&trk=nav_responsive_tab_profile
       http://Ameblo.jp/ameba_acc
       http://reddit.com/user/reddit_acc
@@ -69,7 +70,7 @@ describe IdsPlease do
       end
 
       it 'recognizes linkedin link' do
-        expect(@recognizer.recognized[:linkedin].count).to eq(2)
+        expect(@recognizer.recognized[:linkedin].count).to eq(3)
       end
 
       it 'recognizes livejournal link' do
@@ -167,7 +168,7 @@ describe IdsPlease do
       end
 
       it 'get right id from linkedin link' do
-        expect(@recognizer.parsed[:linkedin]).to eq(['xnutsive', '12341234'])
+        expect(@recognizer.parsed[:linkedin]).to eq(['xnutsive', 'evil-martians', '12341234'])
       end
 
       it 'get right id from instagram link' do
