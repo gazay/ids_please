@@ -1,24 +1,24 @@
 require 'uri'
 require 'cgi'
-require_relative 'ids_please/base_parser'
-require_relative 'ids_please/facebook'
-require_relative 'ids_please/google_plus'
-require_relative 'ids_please/instagram'
-require_relative 'ids_please/blogger'
-require_relative 'ids_please/ameba'
-require_relative 'ids_please/hi5'
-require_relative 'ids_please/livejournal'
-require_relative 'ids_please/linkedin'
-require_relative 'ids_please/pinterest'
-require_relative 'ids_please/reddit'
-require_relative 'ids_please/twitter'
-require_relative 'ids_please/tumblr'
-require_relative 'ids_please/vimeo'
-require_relative 'ids_please/youtube'
-require_relative 'ids_please/soundcloud'
-require_relative 'ids_please/vkontakte'
-require_relative 'ids_please/odnoklassniki'
-require_relative 'ids_please/moikrug'
+require_relative 'ids_please/parsers/base_parser'
+require_relative 'ids_please/parsers/facebook'
+require_relative 'ids_please/parsers/google_plus'
+require_relative 'ids_please/parsers/instagram'
+require_relative 'ids_please/parsers/blogger'
+require_relative 'ids_please/parsers/ameba'
+require_relative 'ids_please/parsers/hi5'
+require_relative 'ids_please/parsers/livejournal'
+require_relative 'ids_please/parsers/linkedin'
+require_relative 'ids_please/parsers/pinterest'
+require_relative 'ids_please/parsers/reddit'
+require_relative 'ids_please/parsers/twitter'
+require_relative 'ids_please/parsers/tumblr'
+require_relative 'ids_please/parsers/vimeo'
+require_relative 'ids_please/parsers/youtube'
+require_relative 'ids_please/parsers/soundcloud'
+require_relative 'ids_please/parsers/vkontakte'
+require_relative 'ids_please/parsers/odnoklassniki'
+require_relative 'ids_please/parsers/moikrug'
 
 class IdsPlease
 
@@ -26,25 +26,25 @@ class IdsPlease
 
   attr_accessor :original, :unrecognized, :parsed
 
-  SOCIAL_NETWORKS = [
-    IdsPlease::GooglePlus,
-    IdsPlease::Vkontakte,
-    IdsPlease::Twitter,
-    IdsPlease::Facebook,
-    IdsPlease::Instagram,
-    IdsPlease::Blogger,
-    IdsPlease::Ameba,
-    IdsPlease::Hi5,
-    IdsPlease::Linkedin,
-    IdsPlease::Livejournal,
-    IdsPlease::Reddit,
-    IdsPlease::Pinterest,
-    IdsPlease::Soundcloud,
-    IdsPlease::Vimeo,
-    IdsPlease::Youtube,
-    IdsPlease::Odnoklassniki,
-    IdsPlease::Tumblr,
-    IdsPlease::Moikrug
+  PARSERS = [
+    IdsPlease::Parsers::GooglePlus,
+    IdsPlease::Parsers::Vkontakte,
+    IdsPlease::Parsers::Twitter,
+    IdsPlease::Parsers::Facebook,
+    IdsPlease::Parsers::Instagram,
+    IdsPlease::Parsers::Blogger,
+    IdsPlease::Parsers::Ameba,
+    IdsPlease::Parsers::Hi5,
+    IdsPlease::Parsers::Linkedin,
+    IdsPlease::Parsers::Livejournal,
+    IdsPlease::Parsers::Reddit,
+    IdsPlease::Parsers::Pinterest,
+    IdsPlease::Parsers::Soundcloud,
+    IdsPlease::Parsers::Vimeo,
+    IdsPlease::Parsers::Youtube,
+    IdsPlease::Parsers::Odnoklassniki,
+    IdsPlease::Parsers::Tumblr,
+    IdsPlease::Parsers::Moikrug
   ]
 
   def initialize(*args)
@@ -74,7 +74,7 @@ class IdsPlease
   def recognize_link(link)
     link = "http://#{link}" unless link =~ /\Ahttps?:\/\//
     parsed_link = URI(URI.encode(link))
-    SOCIAL_NETWORKS.each do |network|
+    PARSERS.each do |network|
       if parsed_link.host =~ network::MASK
         @recognized[network] ||= []
         @recognized[network] << parsed_link
