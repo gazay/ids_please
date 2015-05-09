@@ -22,8 +22,6 @@ require_relative 'ids_please/parsers/moikrug'
 
 class IdsPlease
 
-  VERSION = '1.1.4'
-
   attr_accessor :original, :unrecognized, :parsed
 
   PARSERS = [
