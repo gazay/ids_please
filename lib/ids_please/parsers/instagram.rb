@@ -1,7 +1,9 @@
 class IdsPlease
-  class Instagram < IdsPlease::BaseParser
+  module Parsers
+    class Instagram < IdsPlease::Parsers::Base
 
-    MASK = /instagr/i
+      MASK = /instagr/i
 
+    end
   end
 end

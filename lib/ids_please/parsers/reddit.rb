@@ -1,15 +1,17 @@
 class IdsPlease
-  class Reddit < IdsPlease::BaseParser
+  module Parsers
+    class Reddit < IdsPlease::Parsers::Base
 
-    MASK = /reddit/i
+      MASK = /reddit/i
 
-    class << self
-      private
+      class << self
+        private
 
-      def parse_link(link)
-        link.path.split('/')[2]
+        def parse_link(link)
+          link.path.split('/')[2]
+        end
       end
-    end
 
+    end
   end
 end

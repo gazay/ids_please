@@ -1,23 +1,25 @@
 class IdsPlease
-  class Facebook < IdsPlease::BaseParser
+  module Parsers
+    class Facebook < IdsPlease::Parsers::Base
 
-    MASK = /fb\.me|fb\.com|facebook/i
+      MASK = /fb\.me|fb\.com|facebook/i
 
-    class << self
-      private
+      class << self
+        private
 
-      def parse_link(link)
-        query = CGI.parse(link.query) if link.query && !link.query.empty?
+        def parse_link(link)
+          query = CGI.parse(link.query) if link.query && !link.query.empty?
 
-        if query && !query['id'].empty?
-          query['id'].first
-        elsif link.path =~ /\/pages\//
-          link.path.split('/').last
-        else
-          link.path.split('/')[1]
+          if query && !query['id'].empty?
+            query['id'].first
+          elsif link.path =~ /\/pages\//
+            link.path.split('/').last
+          else
+            link.path.split('/')[1]
+          end
         end
       end
-    end
 
+    end
   end
 end

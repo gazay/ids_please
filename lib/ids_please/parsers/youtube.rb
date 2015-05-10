@@ -1,19 +1,21 @@
 class IdsPlease
-  class Youtube < IdsPlease::BaseParser
+  module Parsers
+    class Youtube < IdsPlease::Parsers::Base
 
-    MASK = /youtu\.be|youtube/i
+      MASK = /youtu\.be|youtube/i
 
-    class << self
-      private
+      class << self
+        private
 
-      def parse_link(link)
-        if link.path =~ /channels|user/
-          link.path.split('/')[2]
-        else
-          link.path.split('/')[1]
+        def parse_link(link)
+          if link.path =~ /channels|user/
+            link.path.split('/')[2]
+          else
+            link.path.split('/')[1]
+          end
         end
       end
-    end
 
+    end
   end
 end

@@ -1,7 +1,9 @@
 class IdsPlease
-  class Ameba < IdsPlease::BaseParser
+  module Parsers
+    class Ameba < IdsPlease::Parsers::Base
 
-    MASK = /ameblo/i
+      MASK = /ameblo/i
 
+    end
   end
 end
