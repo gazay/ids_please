@@ -20,6 +20,8 @@ require_relative 'ids_please/parsers/vkontakte'
 require_relative 'ids_please/parsers/odnoklassniki'
 require_relative 'ids_please/parsers/moikrug'
 
+require_relative 'ids_please/grabbers/'
+
 class IdsPlease
 
   attr_accessor :original, :unrecognized, :parsed
