@@ -17,7 +17,6 @@ class IdsPlease
         @data[:description] = CGI.unescapeHTML(@data[:description]) if @data[:description]
         self
       rescue => e
-        byebug
         p e
         return self
       end

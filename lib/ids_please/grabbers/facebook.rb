@@ -20,7 +20,6 @@ class IdsPlease
         end
         self
       rescue => e
-        byebug
         p e
         return self
       end
