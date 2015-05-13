@@ -3,7 +3,7 @@ class IdsPlease
     class Facebook < IdsPlease::Grabbers::Base
 
       def grab
-        @page_source = open(link).read
+        @page_source ||= open(link).read
         @network_id  = @page_source.scan(/entity_id":"(\d+)"/).flatten.first
         @avatar = @page_source.scan(/og:image" content="([^"]+)"/).flatten.first
         @avatar = CGI.unescapeHTML(@avatar)

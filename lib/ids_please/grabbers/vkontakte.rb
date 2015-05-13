@@ -4,7 +4,7 @@ class IdsPlease
 
       def grab
         agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36'
-        @page_source = open(link, 'User-Agent' => agent).read.encode('utf-8')
+        @page_source ||= open(link, 'User-Agent' => agent).read.encode('utf-8')
         @network_id  = @page_source.scan(/href="\/wall(-\d+)_/).flatten.first
         @avatar = @page_source.scan(/page_avatar.+\n.+src="([^"]+)/).flatten.first
         @avatar = CGI.unescapeHTML(@avatar)
