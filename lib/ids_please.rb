@@ -1,26 +1,7 @@
 require 'uri'
 require 'cgi'
-require_relative 'ids_please/parsers/base'
-require_relative 'ids_please/parsers/facebook'
-require_relative 'ids_please/parsers/google_plus'
-require_relative 'ids_please/parsers/instagram'
-require_relative 'ids_please/parsers/blogger'
-require_relative 'ids_please/parsers/ameba'
-require_relative 'ids_please/parsers/hi5'
-require_relative 'ids_please/parsers/livejournal'
-require_relative 'ids_please/parsers/linkedin'
-require_relative 'ids_please/parsers/pinterest'
-require_relative 'ids_please/parsers/reddit'
-require_relative 'ids_please/parsers/twitter'
-require_relative 'ids_please/parsers/tumblr'
-require_relative 'ids_please/parsers/vimeo'
-require_relative 'ids_please/parsers/youtube'
-require_relative 'ids_please/parsers/soundcloud'
-require_relative 'ids_please/parsers/vkontakte'
-require_relative 'ids_please/parsers/odnoklassniki'
-require_relative 'ids_please/parsers/moikrug'
-
-require_relative 'ids_please/grabbers/'
+require_relative 'ids_please/parsers'
+require_relative 'ids_please/grabbers'
 
 class IdsPlease
 
