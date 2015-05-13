@@ -1,6 +1,6 @@
 require 'uri'
 require 'cgi'
-require_relative 'ids_please/parsers/base_parser'
+require_relative 'ids_please/parsers/base'
 require_relative 'ids_please/parsers/facebook'
 require_relative 'ids_please/parsers/google_plus'
 require_relative 'ids_please/parsers/instagram'
