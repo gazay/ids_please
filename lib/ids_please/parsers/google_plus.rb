@@ -9,7 +9,7 @@ class IdsPlease
           :google_plus
         end
 
-        def parse(links)
+        def interact(links)
           links.map { |l| parse_link(l) }.compact
         end
 

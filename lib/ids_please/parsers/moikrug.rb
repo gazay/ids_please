@@ -5,7 +5,7 @@ class IdsPlease
       MASK = /moikrug/i
 
       class << self
-        def parse(links)
+        def interact(links)
           links.map do |link|
             next if link.host.sub('.moikrug.ru', '') == link.host
             parse_link(link)

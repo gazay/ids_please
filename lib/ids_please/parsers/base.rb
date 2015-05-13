@@ -7,7 +7,7 @@ class IdsPlease
           self.name.split('::').last.downcase.to_sym
         end
 
-        def parse(links)
+        def interact(links)
           links.map do |l|
             id = parse_link(l)
             matched_id = id.match(valid_id_regex) if id

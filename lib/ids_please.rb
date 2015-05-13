@@ -44,7 +44,7 @@ class IdsPlease
     interacted = Hash.new { |hash, network| hash[network] = [] }
     @recognized.each do |network, links|
       interactor = IdsPlease.send(interactors).by_symbol(network)
-      interacted[network].concat interactor.parse(links)
+      interacted[network].concat interactor.interact(links)
     end
     self.instance_variable_set(interacted_var(interactors), interacted)
 

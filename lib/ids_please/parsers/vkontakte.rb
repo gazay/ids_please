@@ -5,7 +5,7 @@ class IdsPlease
       MASK = /vk\.com|vkontakte/i
 
       class << self
-        def parse(links)
+        def interact(links)
           links.map { |l| parse_link(l) }.compact
         end
 

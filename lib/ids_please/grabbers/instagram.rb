@@ -4,7 +4,7 @@ class IdsPlease
   module Grabbers
     class Instagram < IdsPlease::Grabbers::Base
 
-      def grab
+      def grab_link
         @page_source ||= open(link).read
         @network_id  = @page_source.scan(/"user":{.+"id":"(\d+)"/).flatten.first
         @avatar  = @page_source.scan(/"user":{.+"profile_picture":"([^"]+)"/).flatten.first
@@ -19,6 +19,8 @@ class IdsPlease
           website: @page_source.scan(/"user":{.+"website":"([^"]+)"/).flatten.first,
           counts: counts
         }
+
+        self
       end
 
     end

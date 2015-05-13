@@ -4,13 +4,18 @@ class IdsPlease
   module Grabbers
     class Base
 
+      def self.interact(links)
+        links.map { |l| self.new(l).grab_link }
+      end
+
       attr_reader :avatar, :display_name, :link, :page_source, :network_id, :data
 
       def initialize(link)
         @link = link
       end
 
-      def grab
+      def grab_link(link)
+        throw 'Base grabber can not grab anything'
       end
 
       def to_s

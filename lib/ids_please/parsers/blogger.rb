@@ -4,7 +4,7 @@ class IdsPlease
 
       MASK = /blogspot|blogger/i
 
-      def self.parse(links)
+      def self.interact(links)
         links.map do |link|
           parse_link(link)
         end.compact
