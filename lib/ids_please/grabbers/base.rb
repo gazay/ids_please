@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'byebug'
 
 class IdsPlease
   module Grabbers
@@ -8,7 +9,7 @@ class IdsPlease
         links.map { |l| self.new(l).grab_link }
       end
 
-      attr_reader :avatar, :display_name, :link, :page_source, :network_id, :data
+      attr_reader :avatar, :display_name, :username, :link, :page_source, :network_id, :data
 
       def initialize(link)
         @link = link

@@ -16,7 +16,7 @@ class IdsPlease
   attr_accessor :original, :unrecognized, :parsed, :grabbed
 
   def initialize(*args)
-    @original = args.dup
+    @original = args.flatten.dup
   end
 
   def recognize
