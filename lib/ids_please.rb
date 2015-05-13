@@ -7,27 +7,6 @@ class IdsPlease
 
   attr_accessor :original, :unrecognized, :parsed
 
-  PARSERS = [
-    IdsPlease::Parsers::GooglePlus,
-    IdsPlease::Parsers::Vkontakte,
-    IdsPlease::Parsers::Twitter,
-    IdsPlease::Parsers::Facebook,
-    IdsPlease::Parsers::Instagram,
-    IdsPlease::Parsers::Blogger,
-    IdsPlease::Parsers::Ameba,
-    IdsPlease::Parsers::Hi5,
-    IdsPlease::Parsers::Linkedin,
-    IdsPlease::Parsers::Livejournal,
-    IdsPlease::Parsers::Reddit,
-    IdsPlease::Parsers::Pinterest,
-    IdsPlease::Parsers::Soundcloud,
-    IdsPlease::Parsers::Vimeo,
-    IdsPlease::Parsers::Youtube,
-    IdsPlease::Parsers::Odnoklassniki,
-    IdsPlease::Parsers::Tumblr,
-    IdsPlease::Parsers::Moikrug
-  ]
-
   def initialize(*args)
     @original = args.dup
   end
@@ -55,7 +34,7 @@ class IdsPlease
   def recognize_link(link)
     link = "http://#{link}" unless link =~ /\Ahttps?:\/\//
     parsed_link = URI(URI.encode(link))
-    PARSERS.each do |network|
+    IdsPlease::Parsers.each do |network|
       if parsed_link.host =~ network::MASK
         @recognized[network] ||= []
         @recognized[network] << parsed_link

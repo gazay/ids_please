@@ -17,3 +17,33 @@ require_relative 'parsers/soundcloud'
 require_relative 'parsers/vkontakte'
 require_relative 'parsers/odnoklassniki'
 require_relative 'parsers/moikrug'
+
+class IdsPlease
+  module Parsers
+
+    NETWORKS = [
+      IdsPlease::Parsers::GooglePlus,
+      IdsPlease::Parsers::Vkontakte,
+      IdsPlease::Parsers::Twitter,
+      IdsPlease::Parsers::Facebook,
+      IdsPlease::Parsers::Instagram,
+      IdsPlease::Parsers::Blogger,
+      IdsPlease::Parsers::Ameba,
+      IdsPlease::Parsers::Hi5,
+      IdsPlease::Parsers::Linkedin,
+      IdsPlease::Parsers::Livejournal,
+      IdsPlease::Parsers::Reddit,
+      IdsPlease::Parsers::Pinterest,
+      IdsPlease::Parsers::Soundcloud,
+      IdsPlease::Parsers::Vimeo,
+      IdsPlease::Parsers::Youtube,
+      IdsPlease::Parsers::Odnoklassniki,
+      IdsPlease::Parsers::Tumblr,
+      IdsPlease::Parsers::Moikrug
+    ]
+
+    def self.each
+      NETWORKS.each { |n| yield n }
+    end
+  end
+end
