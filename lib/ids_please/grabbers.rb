@@ -1,5 +1,6 @@
 require_relative 'grabbers/base'
 require_relative 'grabbers/facebook'
+require_relative 'grabbers/vkontakte'
 
 class IdsPlease
   module Grabbers
