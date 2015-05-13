@@ -45,5 +45,15 @@ class IdsPlease
     def self.each
       NETWORKS.each { |n| yield n }
     end
+
+    def self.by_symbol(sym)
+      if sym == :google_plus
+        IdsPlease::Parsers::GooglePlus
+      else
+        klass_name = "#{sym.to_s[0].upcase}#{sym.to_s[1..-1]}"
+        self.const_get(klass_name)
+      end
+    end
+
   end
 end
