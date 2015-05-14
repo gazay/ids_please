@@ -24,7 +24,7 @@ class IdsPlease
           next if iv == :@page_source
           val = self.instance_variable_get(iv)
           next if val.nil? || val == ''
-          line += ", #{iv}=#{val}"
+          line += ", \n#{iv}=#{val}"
         end
         "#{self.class}##{self.object_id} #{line[1..-1]}"
       end
