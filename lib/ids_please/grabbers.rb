@@ -2,6 +2,7 @@ require_relative 'grabbers/base'
 require_relative 'grabbers/facebook'
 require_relative 'grabbers/vkontakte'
 require_relative 'grabbers/instagram'
+require_relative 'grabbers/twitter'
 
 class IdsPlease
   module Grabbers
@@ -9,6 +10,7 @@ class IdsPlease
     NETWORKS = [
       IdsPlease::Grabbers::Facebook,
       IdsPlease::Grabbers::Vkontakte,
+      IdsPlease::Grabbers::Twitter,
       IdsPlease::Grabbers::Instagram
     ]
 
