@@ -72,6 +72,7 @@ insta.avatar
 Social networks supported for grabbing at the moment:
 
 * [Facebook](https://www.facebook.com)
+* [Twitter](https://www.twitter.com)
 * [Instagram](http://instagram.com)
 * [Vkontakte](https://vk.com)
 
