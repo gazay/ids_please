@@ -19,7 +19,7 @@ class IdsPlease
     end
 
     def self.by_symbol(sym)
-      "IdsPlease::Grabbers::#{sym.to_s.capitalize}".classify
+      "IdsPlease::Grabbers::#{sym.to_s.capitalize}".constantize
     end
 
   end
