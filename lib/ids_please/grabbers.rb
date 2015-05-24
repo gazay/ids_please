@@ -19,8 +19,7 @@ class IdsPlease
     end
 
     def self.by_symbol(sym)
-      klass_name = "#{sym.to_s[0].upcase}#{sym.to_s[1..-1]}"
-      self.const_get(klass_name)
+      "IdsPlease::Grabbers::#{sym.to_s.capitalize}".classify
     end
 
   end
