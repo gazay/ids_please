@@ -7,20 +7,19 @@ require_relative 'grabbers/twitter'
 class IdsPlease
   module Grabbers
 
-    NETWORKS = [
-      IdsPlease::Grabbers::Facebook,
-      IdsPlease::Grabbers::Vkontakte,
-      IdsPlease::Grabbers::Twitter,
-      IdsPlease::Grabbers::Instagram
-    ]
+    NETWORKS = {
+      facebook: IdsPlease::Grabbers::Facebook,
+      vkontakte: IdsPlease::Grabbers::Vkontakte,
+      twitter: IdsPlease::Grabbers::Twitter,
+      instagram: IdsPlease::Grabbers::Instagram
+    }
 
     def self.each
-      NETWORKS.each { |n| yield n }
+      NETWORKS.values.each { |n| yield n }
     end
 
     def self.by_symbol(sym)
-      klass_name = "#{sym.to_s[0].upcase}#{sym.to_s[1..-1]}"
-      self.const_get(klass_name)
+      NETWORKS[sym]
     end
 
   end

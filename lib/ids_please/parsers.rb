@@ -21,38 +21,33 @@ require_relative 'parsers/moikrug'
 class IdsPlease
   module Parsers
 
-    NETWORKS = [
-      IdsPlease::Parsers::GooglePlus,
-      IdsPlease::Parsers::Vkontakte,
-      IdsPlease::Parsers::Twitter,
-      IdsPlease::Parsers::Facebook,
-      IdsPlease::Parsers::Instagram,
-      IdsPlease::Parsers::Blogger,
-      IdsPlease::Parsers::Ameba,
-      IdsPlease::Parsers::Hi5,
-      IdsPlease::Parsers::Linkedin,
-      IdsPlease::Parsers::Livejournal,
-      IdsPlease::Parsers::Reddit,
-      IdsPlease::Parsers::Pinterest,
-      IdsPlease::Parsers::Soundcloud,
-      IdsPlease::Parsers::Vimeo,
-      IdsPlease::Parsers::Youtube,
-      IdsPlease::Parsers::Odnoklassniki,
-      IdsPlease::Parsers::Tumblr,
-      IdsPlease::Parsers::Moikrug
-    ]
+    NETWORKS = {
+      google_plus: IdsPlease::Parsers::GooglePlus,
+      vkontakte: IdsPlease::Parsers::Vkontakte,
+      twitter: IdsPlease::Parsers::Twitter,
+      facebook: IdsPlease::Parsers::Facebook,
+      instagram: IdsPlease::Parsers::Instagram,
+      blogger: IdsPlease::Parsers::Blogger,
+      ameba: IdsPlease::Parsers::Ameba,
+      hi5: IdsPlease::Parsers::Hi5,
+      linkedin: IdsPlease::Parsers::Linkedin,
+      livejournal: IdsPlease::Parsers::Livejournal,
+      reddit: IdsPlease::Parsers::Reddit,
+      pinterest: IdsPlease::Parsers::Pinterest,
+      soundcloud: IdsPlease::Parsers::Soundcloud,
+      vimeo: IdsPlease::Parsers::Vimeo,
+      youtube: IdsPlease::Parsers::Youtube,
+      odnoklassniki: IdsPlease::Parsers::Odnoklassniki,
+      tumblr: IdsPlease::Parsers::Tumblr,
+      moikrug: IdsPlease::Parsers::Moikrug
+    }
 
     def self.each
-      NETWORKS.each { |n| yield n }
+      NETWORKS.values.each { |n| yield n }
     end
 
     def self.by_symbol(sym)
-      if sym == :google_plus
-        IdsPlease::Parsers::GooglePlus
-      else
-        klass_name = "#{sym.to_s[0].upcase}#{sym.to_s[1..-1]}"
-        self.const_get(klass_name)
-      end
+      NETWORKS[sym]
     end
 
   end
