@@ -75,6 +75,7 @@ Social networks supported for grabbing at the moment:
 * [Twitter](https://www.twitter.com)
 * [Instagram](http://instagram.com)
 * [Vkontakte](https://vk.com)
+* [Mailru](https://my.mail.ru)
 
 ### Link parsing
 
@@ -116,6 +117,7 @@ Social networks supported at the moment:
 * [Vkontakte](http://vk.com)
 * [Odnoklassniki](http://odnoklassniki.ru)
 * [Moikrug](https://moikrug.ru)
+* [Mailru](https://my.mail.ru)
 
 ## Contributors
 
