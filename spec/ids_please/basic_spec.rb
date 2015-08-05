@@ -30,6 +30,8 @@ describe IdsPlease do
       http://ok.ru/profile/12341234/about
       http://odnoklassniki.com/group/43214321/about?some=123
       http://moikrug-acc.moikrug.ru
+      https://my.mail.ru/community/test-group-102/
+      https://my.mail.ru/mail/gazay/
     )
 
   not_recognazible_links = %w(
@@ -131,6 +133,10 @@ describe IdsPlease do
 
       it 'recognizes moikrug link' do
         expect(@recognizer.recognized[:moikrug].count).to eq(1)
+      end
+
+      it 'recognizes mailru links' do
+        expect(@recognizer.recognized[:mailru].count).to eq(2)
       end
 
     end

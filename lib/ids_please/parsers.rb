@@ -17,6 +17,7 @@ require_relative 'parsers/soundcloud'
 require_relative 'parsers/vkontakte'
 require_relative 'parsers/odnoklassniki'
 require_relative 'parsers/moikrug'
+require_relative 'parsers/mailru'
 
 class IdsPlease
   module Parsers
@@ -39,7 +40,8 @@ class IdsPlease
       youtube: IdsPlease::Parsers::Youtube,
       odnoklassniki: IdsPlease::Parsers::Odnoklassniki,
       tumblr: IdsPlease::Parsers::Tumblr,
-      moikrug: IdsPlease::Parsers::Moikrug
+      moikrug: IdsPlease::Parsers::Moikrug,
+      mailru: IdsPlease::Parsers::Mailru
     }
 
     def self.each
