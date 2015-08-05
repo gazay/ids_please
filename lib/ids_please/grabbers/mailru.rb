@@ -10,7 +10,7 @@ class IdsPlease
         @network_id  = JSON.parse(open(uid_url).read)['uid']
         @username, type = get_name_and_type(link)
         @avatar = @page_source.scan(/profile_avatar.+\n.+image: url\(([^\(]+)/).flatten.first
-        @display_name = @page_source.scan(/h1.+>([^<]+)/).flatten.first
+        @display_name = @page_source.scan(/h1.+title="([^"]+)/).flatten.first
         @display_name = CGI.unescapeHTML(@display_name) if @display_name
         @data = {
           type: type,
@@ -28,13 +28,13 @@ class IdsPlease
       def get_name_and_type(link)
         ind = -1
         splitted = link.split('/')
+        type = 'user'
         splitted.each_with_index do |part, i|
           if part == 'community'
             ind = i + 1
             type = 'group'
           elsif part == 'mail'
             ind = i + 1
-            type = 'user'
           end
         end
         name = splitted[ind].split('?').first.split('#').first
