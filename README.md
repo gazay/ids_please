@@ -2,10 +2,9 @@
 
 [![Build Status](https://travis-ci.org/gazay/ids_please.svg)](https://codeclimate.com/github/gazay/ids_please) [![ids_please API Documentation](https://www.omniref.com/ruby/gems/ids_please.png)](https://www.omniref.com/ruby/gems/ids_please)
 
-Grab some hidden in html data from social account page. Get social network IDs or screen names from links to social network accounts.
+Grab some hidden in HTML data from social account page. Get social network IDs or screen names from links to social network accounts.
 
-Sometimes you need to get a social network account name from a link —
-to store a screen name in your database instead of parsing the link every time,
+Sometimes you need to get a social network account name from a link. To store a screen name in your database instead of parsing the link every time,
 or maybe to work with these accounts using social network APIs (as I do).
 Would be easier to have a library that extracts this kind of information
 from all known social networks for your pleasure.
@@ -32,18 +31,18 @@ gem 'ids_please'
 
 ## Usage
 
-This gem works in two modes – you can get real data from social network by http request and page parsing
-and you can just parse link to social account to find username/id. Sometimes username from link can't be
-used with social network's API, in this case try to get real ID with grab mode.
+This gem works in two modes – you can get real data from social network by HTTP request and page parsing
+and you can just parse a link to social account to find username/id. Sometimes username from link can't be
+used with social network's API, in this case, try to get real ID with grab mode.
 
 ### Grabbing data from social account's page
 
-This functionality works through real http requests, so if you feed it with many links – it can take a while.
+This functionality works through real HTTP requests, so if you feed it with many links – it can take a while.
 
 As Facebook shows data only from public pages and public groups – in most cases you can't gather data from
-any profile page. Same thing about private `instagram` accounts, profiles and private groups in `vk`.
+any profile page. Same thing about private `Instagram` accounts, profiles and private groups in `vk`.
 
-Also you should provide real urls with right protocols. For example you will not receive any data from `http://facebook.com/Microsoft`,
+Also, you should provide real URLs with right protocols. For example, you will not receive any data from `http://facebook.com/Microsoft`,
 but from `https://facebook.com/Microsoft` you'll receive all data as in example below:
 
 ```ruby
