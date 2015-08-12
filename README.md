@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.org/gazay/ids_please.svg)](https://codeclimate.com/github/gazay/ids_please) [![ids_please API Documentation](https://www.omniref.com/ruby/gems/ids_please.png)](https://www.omniref.com/ruby/gems/ids_please)
 
-Grab some hidden in HTML data from social account page. Get social network IDs or screen names from links to social network accounts.
+![IDs, Please](https://raw.githubusercontent.com/gazay/ids_please/gh-pages/doc/ids-grey.png)
+
+Grab some hidden in html data from social account page. Get social network IDs or screen names from links to social network accounts.
 
 Sometimes you need to get a social network account name from a link. To store a screen name in your database instead of parsing the link every time,
 or maybe to work with these accounts using social network APIs (as I do).
@@ -130,7 +132,11 @@ Special thanks to @ai, @yaroslav, @whitequark
 
 ## Notes
 
-Gem named under an impression of an awesome game called [Papers, please](http://papersplea.se/)
+Gem named under an impression of an awesome game called [Papers, please](http://papersplea.se/).
+
+Logo of gem also was inspired by its logo.
+
+Thanks [@dukope](https://twitter.com/dukope) for allowing me to do this!
 
 ## License
 
