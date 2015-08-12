@@ -29,6 +29,18 @@ class IdsPlease
         "#{self.class}##{self.object_id} #{line[1..-1]}"
       end
 
+      def to_h
+        {
+          avatar: avatar,
+          display_name: display_name,
+          username: username,
+          link: link,
+          page_source: page_source,
+          network_id: network_id,
+          data: data
+        }
+      end
+
       def inspect
         to_s
       end
