@@ -8,7 +8,7 @@ class IdsPlease
         @network_id  = page_source.scan(/"user":{.+"id":"(\d+)"/).flatten.first
         @avatar  = page_source.scan(/"user":{.+"profile_pic_url":"([^"]+)"/).flatten.first.gsub('\\', '')
         @display_name  = page_source.scan(/"user":{.+"full_name":"([^"]+)"/).flatten.first
-        @username  = page_source.scan(/"user":{.+"username":"([^"]+)"/).flatten.first.gsub('\\', '')
+        @username  = page_source.scan(/"user":{"username":"([^"]+)"/).flatten.first.gsub('\\', '')
         counts = page_source.scan(/"user":{.+"counts":({[^}]+})/).flatten.first
         counts = JSON.parse counts
         @data = {}
