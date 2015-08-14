@@ -12,7 +12,11 @@ class IdsPlease
         @data = {}
         {
           type: page_source.scan(/og:type" content="([^"]+)"/).flatten.first.encode('utf-8'),
-          description: page_source.scan(/og:description" content="([^"]+)"/).flatten.first.encode('utf-8')
+          description: page_source.scan(/og:description" content="([^"]+)"/).flatten.first.encode('utf-8'),
+          counts: {
+            likes:  likes,
+            visits: visits,
+          }
         }.each do |k, v|
           next if v.nil? || v == ''
           @data[k] = CGI.unescapeHTML(v)
@@ -23,6 +27,19 @@ class IdsPlease
         return self
       end
 
+      def likes
+        page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.tr(',','')
+      rescue => e
+        p e
+        return nil
+      end
+
+      def visits
+        page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.tr(',','')
+      rescue => e
+        p e
+        return nil
+      end
     end
   end
 end
