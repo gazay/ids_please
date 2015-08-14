@@ -45,6 +45,9 @@ class IdsPlease
         to_s
       end
 
+      def page_source
+        @page_source ||= open(link).read
+      end
     end
   end
 end
