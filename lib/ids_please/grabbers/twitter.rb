@@ -12,18 +12,17 @@ class IdsPlease
           description: page_source.scan(/ProfileHeaderCard-bio[^>]+>([^<]+)</).flatten.first.encode('utf-8'),
           location: page_source.scan(/ProfileHeaderCard-locationText[^>]+>([^<]+)</).flatten.first.encode('utf-8'),
           join_date: page_source.scan(/ProfileHeaderCard-joinDateText[^>]+>([^<]+)</).flatten.first.encode('utf-8'),
-          counts: {
-            tweets: page_source.scan(/statuses_count&quot;:(\d+),&quot;/).flatten.first,
-            following: page_source.scan(/friends_count&quot;:(\d+),&quot;/).flatten.first,
-            followers: page_source.scan(/followers_count&quot;:(\d+),&quot;/).flatten.first,
-            favorites: page_source.scan(/favourites_count&quot;:(\d+),&quot;/).flatten.first,
-            lists: page_source.scan(/listed_count&quot;:(\d+),&quot;/).flatten.first,
-          }
-
         }.each do |k, v|
           next if v.nil? || v == ''
           @data[k] = CGI.unescapeHTML(v).strip
         end
+        @counts = {
+          tweets: page_source.scan(/statuses_count&quot;:(\d+),&quot;/).flatten.first.to_i,
+          following: page_source.scan(/friends_count&quot;:(\d+),&quot;/).flatten.first.to_i,
+          followers: page_source.scan(/followers_count&quot;:(\d+),&quot;/).flatten.first.to_i,
+          favorites: page_source.scan(/favourites_count&quot;:(\d+),&quot;/).flatten.first.to_i,
+          lists: page_source.scan(/listed_count&quot;:(\d+),&quot;/).flatten.first.to_i,
+        }
         self
       rescue => e
         p e
