@@ -3,20 +3,17 @@ class IdsPlease
     class GooglePlus < IdsPlease::Grabbers::Base
 
       def grab_link
-        @network_id  = page_source.scan(/entity_id":"(\d+)"/).flatten.first
-        # @avatar = page_source.scan(/og:image" content="([^"]+)"/).flatten.first
-        # @display_name = page_source.scan(/og:title" content="([^"]+)"/).flatten.first
-        # @username = page_source.scan(/og:url" content="[^"]+\/([^\/"]+)"/).flatten.first
-        # @avatar = CGI.unescapeHTML(@avatar.encode('utf-8')) if @avatar
-        # @display_name = CGI.unescapeHTML(@display_name.encode('utf-8')) if @display_name
-        # @data = {}
-        # {
-        #   type: page_source.scan(/og:type" content="([^"]+)"/).flatten.first.encode('utf-8'),
-        #   description: page_source.scan(/og:description" content="([^"]+)"/).flatten.first.encode('utf-8')
-        # }.each do |k, v|
-        #   next if v.nil? || v == ''
-        #   @data[k] = CGI.unescapeHTML(v)
-        end
+        @network_id  = page_source.scan(/data-oid="(\d+)"/).flatten.first
+        @avatar = 'https:' + page_source.scan(/guidedhelpid="profile_photo"><img src="([^"]+)"/).flatten.first
+        @display_name = page_source.scan(/og:title" content="([^"]+)"/).flatten.first.gsub(' - Google+','')
+        @username = '+' + page_source.scan(/&quot;https:\/\/plus.google.com\/\+(.+?)&quot;/).flatten.first
+        @data = {
+          description: page_source.scan(/name="Description" content="([^"]+)">/).flatten.first.encode('utf-8')
+        }
+        @counts = {
+          followers:  page_source.scan(/">([^"]+)<\/span> followers</).flatten.first.tr(',','').to_i,
+          views: page_source.scan(/">([^"]+)<\/span> views</).flatten.first.tr(',','').to_i,
+        }
         self
       rescue => e
         p e
