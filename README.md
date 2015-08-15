@@ -81,6 +81,7 @@ Social networks supported for grabbing at the moment:
 * [Instagram](http://instagram.com)
 * [Vkontakte](https://vk.com)
 * [Mailru](https://my.mail.ru)
+* [GooglePlus](https://plus.google.com)
 
 ### Link parsing
 

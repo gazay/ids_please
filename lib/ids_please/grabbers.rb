@@ -4,6 +4,7 @@ require_relative 'grabbers/vkontakte'
 require_relative 'grabbers/instagram'
 require_relative 'grabbers/twitter'
 require_relative 'grabbers/mailru'
+require_relative 'grabbers/google_plus'
 
 class IdsPlease
   module Grabbers
@@ -14,6 +15,7 @@ class IdsPlease
       twitter: IdsPlease::Grabbers::Twitter,
       instagram: IdsPlease::Grabbers::Instagram,
       mailru: IdsPlease::Grabbers::Mailru,
+      google_plus: IdsPlease::Grabbers::GooglePlus,
     }
 
     def self.each

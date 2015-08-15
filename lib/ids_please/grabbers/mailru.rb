@@ -5,13 +5,13 @@ class IdsPlease
     class Mailru < IdsPlease::Grabbers::Base
 
       def grab_link
-        @page_source ||= open(link).read.encode('utf-8')
-        uid_url = "http://appsmail.ru/platform/#{link.split('/')[-2..-1].join('/')}"
-        @network_id  = JSON.parse(open(uid_url).read)['uid']
+        @page_source  ||= open(link).read.encode('utf-8')
+        uid_url         = "http://appsmail.ru/platform/#{link.split('/')[-2..-1].join('/')}"
+        @network_id     = JSON.parse(open(uid_url).read)['uid']
         @username, type = get_name_and_type(link)
-        @avatar = page_source.scan(/profile__avatar" src="([^"]+)/).flatten.first
-        @display_name = page_source.scan(/h1.+title="([^"]+)/).flatten.first
-        @display_name = CGI.unescapeHTML(@display_name) if @display_name
+        @avatar         = page_source.scan(/profile__avatar" src="([^"]+)/).flatten.first
+        @display_name   = page_source.scan(/h1.+title="([^"]+)/).flatten.first
+        @display_name   = CGI.unescapeHTML(@display_name) if @display_name
         @data = {
           type: type,
           description: page_source.scan(/profile__content_mainInfo" title="([^"]+)/).flatten.first
