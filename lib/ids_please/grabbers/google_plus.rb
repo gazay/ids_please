@@ -8,11 +8,11 @@ class IdsPlease
         @display_name = page_source.scan(/og:title" content="([^"]+)"/).flatten.first.gsub(' - Google+','')
         @username     = '+' + page_source.scan(/&quot;https:\/\/plus.google.com\/\+(.+?)&quot;/).flatten.first
         @data = {
-          description: page_source.scan(/name="Description" content="([^"]+)">/).flatten.first.encode('utf-8')
+          description: page_source.scan(/name="Description" content="([^"]+)">/).flatten.first.to_s.encode('utf-8')
         }
         @counts = {
-          followers:  page_source.scan(/">([^"]+)<\/span> followers</).flatten.first.tr(',','').to_i,
-          views: page_source.scan(/">([^"]+)<\/span> views</).flatten.first.tr(',','').to_i,
+          followers:  page_source.scan(/">([^"]+)<\/span> followers</).flatten.first.to_s.tr(',','').to_i,
+          views: page_source.scan(/">([^"]+)<\/span> views</).flatten.first.to_s.tr(',','').to_i,
         }
         self
       rescue => e

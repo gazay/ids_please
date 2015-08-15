@@ -11,8 +11,8 @@ class IdsPlease
         @display_name = CGI.unescapeHTML(@display_name.encode('utf-8')) if @display_name
         @data = {}
         {
-          type: page_source.scan(/og:type" content="([^"]+)"/).flatten.first.encode('utf-8'),
-          description: page_source.scan(/og:description" content="([^"]+)"/).flatten.first.encode('utf-8'),
+          type: page_source.scan(/og:type" content="([^"]+)"/).flatten.first.to_s.encode('utf-8'),
+          description: page_source.scan(/og:description" content="([^"]+)"/).flatten.first.to_s.encode('utf-8'),
         }.each do |k, v|
           next if v.nil? || v == ''
           @data[k] = CGI.unescapeHTML(v).strip
@@ -28,14 +28,14 @@ class IdsPlease
       end
 
       def likes
-        page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.tr(',','').to_i
+        page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.to_s.tr(',','').to_i
       rescue => e
         p e
         return nil
       end
 
       def visits
-        page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.tr(',','').to_i
+        page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.to_s.tr(',','').to_i
       rescue => e
         p e
         return nil
