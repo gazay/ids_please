@@ -28,14 +28,14 @@ class IdsPlease
       end
 
       def likes
-        page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.tr(',','').to_i
+        page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.to_s.tr(',','').to_i
       rescue => e
         p e
         return nil
       end
 
       def visits
-        page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.tr(',','').to_i
+        page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.to_s.tr(',','').to_i
       rescue => e
         p e
         return nil
