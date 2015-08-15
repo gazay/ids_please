@@ -4,7 +4,7 @@ describe IdsPlease do
 
   recognazible_links = %w(
       https://www.facebook.com/fb_acc
-      https://www.facebook.com/fb_acc2<U+200>
+      https://facebook.com/fb_acc2<U+200>
       http://instagram.com/inst_acc
       http://hi5.com/hi5_acc
       http://www.hi5.com/profile.html?uid=12341234
