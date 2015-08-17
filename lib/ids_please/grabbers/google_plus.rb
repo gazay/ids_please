@@ -10,8 +10,7 @@ class IdsPlease
 
         @counts = {
           followers: find_followers,
-          views: find_views,
-          reviews: find_reviews
+          views: find_views
         }.delete_if {|k,v| v.nil? }
 
         @data = {
@@ -60,21 +59,18 @@ class IdsPlease
       end
 
       def find_followers
-        page_source.scan(/">([^"]+)<\/span> followers</).flatten.first.tr(',','').to_i
+        if followers = page_source.scan(/">([^"]+)<\/span> followers</).flatten.first
+          followers.tr(',','').to_i
+        end
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_views
-        page_source.scan(/">([^"]+)<\/span> views</).flatten.first.tr(',','').to_i
-      rescue => e
-        record_error __method__, e.message
-        return nil
-      end
-
-      def find_reviews
-        nil
+        if views = page_source.scan(/">([^"]+)<\/span> views</).flatten.first
+          views.tr(',','').to_i
+        end
       rescue => e
         record_error __method__, e.message
         return nil
