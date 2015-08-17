@@ -1,51 +1,49 @@
 require 'spec_helper'
 
 describe IdsPlease do
-
   recognazible_links = %w(
-      https://www.facebook.com/fb_acc
-      https://facebook.com/fb_acc2<U+200>
-      http://instagram.com/inst_acc
-      http://hi5.com/hi5_acc
-      http://www.hi5.com/profile.html?uid=12341234
-      http://pinterest.com/pinterest_acc
-      http://blogger-acc.blogspot.com
-      http://livejournal-acc.livejournal.com
-      http://livejournal-acc2.livejournal.ru
-      https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
-      http://vk.com/vk_acc
-      http://linkedin.com/in/xnutsive
-      http://www.linkedin.com/company/evil-martians
-      http://www.linkedin.com/profile/view?id=12341234&trk=nav_responsive_tab_profile
-      http://Ameblo.jp/ameba_acc
-      http://reddit.com/user/reddit_acc
-      https://twitter.com/twi_acc
-      https://vimeo.com/vimeo_acc
-      https://plus.google.com/12341234
-      https://plus.google.com/+VladimirBokov
-      https://soundcloud.com/sc_acc
-      https://youtube.com/channels/yb_acc
-      http://tumblr-acc.tumblr.com
-      http://odnoklassniki.com/profile/12341234/about
-      http://ok.ru/profile/12341234/about
-      http://odnoklassniki.com/group/43214321/about?some=123
-      http://moikrug-acc.moikrug.ru
-      https://my.mail.ru/community/test-group-102/
-      https://my.mail.ru/mail/gazay/
-    )
+    https://www.facebook.com/fb_acc
+    https://facebook.com/fb_acc2<U+200>
+    http://instagram.com/inst_acc
+    http://hi5.com/hi5_acc
+    http://www.hi5.com/profile.html?uid=12341234
+    http://pinterest.com/pinterest_acc
+    http://blogger-acc.blogspot.com
+    http://livejournal-acc.livejournal.com
+    http://livejournal-acc2.livejournal.ru
+    https://www.blogger.com/blogger.g?blogID=12341234#overview/src=dashboard
+    http://vk.com/vk_acc
+    http://linkedin.com/in/xnutsive
+    http://www.linkedin.com/company/evil-martians
+    http://www.linkedin.com/profile/view?id=12341234&trk=nav_responsive_tab_profile
+    http://Ameblo.jp/ameba_acc
+    http://reddit.com/user/reddit_acc
+    https://twitter.com/twi_acc
+    https://vimeo.com/vimeo_acc
+    https://plus.google.com/12341234
+    https://plus.google.com/+VladimirBokov
+    https://soundcloud.com/sc_acc
+    https://youtube.com/channels/yb_acc
+    http://tumblr-acc.tumblr.com
+    http://odnoklassniki.com/profile/12341234/about
+    http://ok.ru/profile/12341234/about
+    http://odnoklassniki.com/group/43214321/about?some=123
+    http://moikrug-acc.moikrug.ru
+    https://my.mail.ru/community/test-group-102/
+    https://my.mail.ru/mail/gazay/
+  )
 
   not_recognazible_links = %w(
-      http://fucebook.com/not_recognized
-      http://vka.com/not_recognized
-    )
+    http://fucebook.com/not_recognized
+    http://vka.com/not_recognized
+  )
 
   not_parseble_links = %w(
-      http://vk.com
-      http://soundcloud.com
-    )
+    http://vk.com
+    http://soundcloud.com
+  )
 
   describe 'recognize' do
-
     it 'not recognizes wrong links' do
       recognizer = IdsPlease.new(*not_recognazible_links)
       recognizer.recognize
@@ -138,13 +136,10 @@ describe IdsPlease do
       it 'recognizes mailru links' do
         expect(@recognizer.recognized[:mailru].count).to eq(2)
       end
-
     end
-
   end
 
   describe 'parse' do
-
     it 'not parse wrong links' do
       @recognizer = IdsPlease.new(*not_parseble_links)
       @recognizer.parse
@@ -170,7 +165,7 @@ describe IdsPlease do
       end
 
       it 'get right id from facebook link' do
-        expect(@recognizer.parsed[:facebook]).to eq(['fb_acc', 'fb_acc2'])
+        expect(@recognizer.parsed[:facebook]).to eq(%w(fb_acc fb_acc2))
       end
 
       it 'get right id from linkedin link' do
@@ -210,7 +205,7 @@ describe IdsPlease do
       end
 
       it 'get right id from hi5 link' do
-        expect(@recognizer.parsed[:hi5]).to eq(['hi5_acc', '12341234'])
+        expect(@recognizer.parsed[:hi5]).to eq(%w(hi5_acc 12341234))
       end
 
       it 'get right id from soundcloud link' do
@@ -234,14 +229,12 @@ describe IdsPlease do
       end
 
       it 'get right id from odnoklassniki link' do
-        expect(@recognizer.parsed[:odnoklassniki].sort).to eq(['12341234', '43214321', '12341234'].sort)
+        expect(@recognizer.parsed[:odnoklassniki].sort).to eq(%w(12341234 43214321 12341234).sort)
       end
 
       it 'get right id from moikrug link' do
         expect(@recognizer.parsed[:moikrug].first).to eq('moikrug-acc')
       end
-
     end
   end
-
 end

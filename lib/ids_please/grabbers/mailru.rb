@@ -3,7 +3,6 @@ require 'json'
 class IdsPlease
   module Grabbers
     class Mailru < IdsPlease::Grabbers::Base
-
       def grab_link
         @page_source  ||= open(link).read.encode('utf-8')
         uid_url         = "http://appsmail.ru/platform/#{link.split('/')[-2..-1].join('/')}"
@@ -40,7 +39,6 @@ class IdsPlease
         name = splitted[ind].split('?').first.split('#').first
         [name, type]
       end
-
     end
   end
 end

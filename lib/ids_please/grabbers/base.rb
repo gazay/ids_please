@@ -3,10 +3,9 @@ require 'open-uri'
 class IdsPlease
   module Grabbers
     class Base
-
       def self.interact(links)
         links.map do |l|
-          self.new(l).grab_link
+          new(l).grab_link
         end
       end
 
@@ -23,19 +22,19 @@ class IdsPlease
         @link = link
       end
 
-      def grab_link(link)
+      def grab_link(_link)
         throw 'Base grabber can not grab anything'
       end
 
       def to_s
         line = ''
-        self.instance_variables.each do |iv|
+        instance_variables.each do |iv|
           next if iv == :@page_source
-          val = self.instance_variable_get(iv)
+          val = instance_variable_get(iv)
           next if val.nil? || val == ''
           line += ", \n#{iv}=#{val}"
         end
-        "#{self.class}##{self.object_id} #{line[1..-1]}"
+        "#{self.class}##{object_id} #{line[1..-1]}"
       end
 
       def to_h
@@ -62,7 +61,7 @@ class IdsPlease
         @errors ||= []
       end
 
-      def record_error event, message
+      def record_error(event, message)
         errors << event.to_s + ' has ' + message
       end
     end

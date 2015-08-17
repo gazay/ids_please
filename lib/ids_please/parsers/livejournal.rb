@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Livejournal < IdsPlease::Parsers::Base
-
       MASK = /livejournal/i
 
       class << self
@@ -14,7 +13,6 @@ class IdsPlease
           parsed
         end
       end
-
     end
   end
 end

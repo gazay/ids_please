@@ -1,7 +1,6 @@
 class IdsPlease
   module Grabbers
     class GooglePlus < IdsPlease::Grabbers::Base
-
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -11,11 +10,11 @@ class IdsPlease
         @counts = {
           followers: find_followers,
           views: find_views
-        }.delete_if {|k,v| v.nil? }
+        }.delete_if { |_k, v| v.nil? }
 
         @data = {
           description: find_description
-        }.delete_if {|k,v| v.nil? }
+        }.delete_if { |_k, v| v.nil? }
 
         self
       rescue => e
@@ -38,7 +37,7 @@ class IdsPlease
       end
 
       def find_display_name
-        page_source.scan(/og:title" content="([^"]+)"/).flatten.first.gsub(' - Google+','')
+        page_source.scan(/og:title" content="([^"]+)"/).flatten.first.gsub(' - Google+', '')
       rescue => e
         record_error __method__, e.message
         return nil
@@ -60,7 +59,7 @@ class IdsPlease
 
       def find_followers
         if followers = page_source.scan(/">([^"]+)<\/span> followers</).flatten.first
-          followers.tr(',','').to_i
+          followers.tr(',', '').to_i
         end
       rescue => e
         record_error __method__, e.message
@@ -69,7 +68,7 @@ class IdsPlease
 
       def find_views
         if views = page_source.scan(/">([^"]+)<\/span> views</).flatten.first
-          views.tr(',','').to_i
+          views.tr(',', '').to_i
         end
       rescue => e
         record_error __method__, e.message

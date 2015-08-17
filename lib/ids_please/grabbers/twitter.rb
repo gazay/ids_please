@@ -1,7 +1,6 @@
 class IdsPlease
   module Grabbers
     class Twitter < IdsPlease::Grabbers::Base
-
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -13,14 +12,14 @@ class IdsPlease
           following: find_following,
           followers: find_followers,
           favorites: find_favorites,
-          lists: find_listed,
-        }.delete_if {|k,v| v.nil? }
+          lists: find_listed
+        }.delete_if { |_k, v| v.nil? }
 
         @data = {
           description: find_description,
           location: find_location,
-          join_date: find_join_date,
-        }.delete_if {|k,v| v.nil? }
+          join_date: find_join_date
+        }.delete_if { |_k, v| v.nil? }
 
         self
       rescue => e

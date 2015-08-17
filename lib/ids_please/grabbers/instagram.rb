@@ -3,7 +3,6 @@ require 'json'
 class IdsPlease
   module Grabbers
     class Instagram < IdsPlease::Grabbers::Base
-
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -13,13 +12,13 @@ class IdsPlease
         @counts = {
           media: find_media,
           followed_by: find_followed_by,
-          follows: find_follows,
-        }.delete_if {|k,v| v.nil? }
+          follows: find_follows
+        }.delete_if { |_k, v| v.nil? }
 
         @data = {
           bio: find_bio,
-          website: find_website,
-        }.delete_if {|k,v| v.nil? }
+          website: find_website
+        }.delete_if { |_k, v| v.nil? }
 
         self
       rescue => e
@@ -42,7 +41,7 @@ class IdsPlease
       end
 
       def find_display_name
-        page_source.scan(/"user":{.+"full_name":"([^"]+)"/).flatten.first.gsub(/\\u([\da-fA-F]{4})/) {|m| [$1].pack("H*").unpack("n*").pack("U*")}
+        page_source.scan(/"user":{.+"full_name":"([^"]+)"/).flatten.first.gsub(/\\u([\da-fA-F]{4})/) { |_m| [Regexp.last_match(1)].pack('H*').unpack('n*').pack('U*') }
       rescue => e
         record_error __method__, e.message
         return nil
