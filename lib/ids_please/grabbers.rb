@@ -8,6 +8,7 @@ require_relative 'grabbers/google_plus'
 
 class IdsPlease
   module Grabbers
+    
     NETWORKS = {
       facebook: IdsPlease::Grabbers::Facebook,
       vkontakte: IdsPlease::Grabbers::Vkontakte,
@@ -24,5 +25,6 @@ class IdsPlease
     def self.by_symbol(sym)
       NETWORKS[sym]
     end
+    
   end
 end
