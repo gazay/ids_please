@@ -15,7 +15,7 @@ class IdsPlease
 
         @data = {
           description: find_description
-        }
+        }.delete_if {|k,v| v.nil? }
 
         self
       rescue => e
