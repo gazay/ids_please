@@ -30,6 +30,48 @@ class IdsPlease
         return self
       end
 
+      def find_network_id
+
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_avatar
+
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_display_name
+
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_username
+
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_type
+
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_description
+
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
       def find_likes
         page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.tr(',','').to_i
       rescue => e
