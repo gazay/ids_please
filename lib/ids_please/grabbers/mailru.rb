@@ -19,7 +19,7 @@ class IdsPlease
         @data[:description] = CGI.unescapeHTML(@data[:description]) if @data[:description]
         self
       rescue => e
-        p e
+        record_error __method__, e.message
         return self
       end
 

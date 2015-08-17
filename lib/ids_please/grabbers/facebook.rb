@@ -9,6 +9,12 @@ class IdsPlease
         @username     = page_source.scan(/og:url" content="[^"]+\/([^\/"]+)"/).flatten.first
         @avatar       = CGI.unescapeHTML(@avatar.encode('utf-8')) if @avatar
         @display_name = CGI.unescapeHTML(@display_name.encode('utf-8')) if @display_name
+
+        @counts = {
+          likes:  likes,
+          visits: visits,
+        }.delete_if {|k,v| v.nil? }
+
         @data = {}
         {
           type: page_source.scan(/og:type" content="([^"]+)"/).flatten.first.encode('utf-8'),
@@ -17,27 +23,24 @@ class IdsPlease
           next if v.nil? || v == ''
           @data[k] = CGI.unescapeHTML(v).strip
         end
-        @counts = {
-          likes:  likes,
-          visits: visits,
-        }.delete_if {|k,v| v.nil? }
+
         self
       rescue => e
-        p e
+        record_error __method__, e.message
         return self
       end
 
-      def likes
+      def find_likes
         page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.tr(',','').to_i
       rescue => e
-        p e
+        record_error __method__, e.message
         return nil
       end
 
-      def visits
+      def find_visits
         page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.tr(',','').to_i
       rescue => e
-        p e
+        record_error __method__, e.message
         return nil
       end
     end

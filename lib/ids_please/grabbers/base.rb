@@ -5,10 +5,19 @@ class IdsPlease
     class Base
 
       def self.interact(links)
-        links.map { |l| self.new(l).grab_link }
+        links.map do |l|
+          self.new(l).grab_link
+        end
       end
 
-      attr_reader :avatar, :display_name, :username, :link, :page_source, :network_id, :data, :counts
+      attr_reader :avatar,
+                  :display_name,
+                  :username,
+                  :link,
+                  :page_source,
+                  :network_id,
+                  :data,
+                  :counts
 
       def initialize(link)
         @link = link
@@ -47,6 +56,14 @@ class IdsPlease
 
       def page_source
         @page_source ||= open(link).read
+      end
+
+      def errors
+        @errors ||= []
+      end
+
+      def record_error event, message
+        errors << event.to_s + ' has ' + message
       end
     end
   end

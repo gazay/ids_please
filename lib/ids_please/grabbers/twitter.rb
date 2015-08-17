@@ -25,7 +25,7 @@ class IdsPlease
         }
         self
       rescue => e
-        p e
+        record_error __method__, e.message
         return self
       end
 
