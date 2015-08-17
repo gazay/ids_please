@@ -3,10 +3,9 @@ require 'open-uri'
 class IdsPlease
   module Grabbers
     class Base
+      
       def self.interact(links)
-        links.map do |l|
-          new(l).grab_link
-        end
+        links.map { |l| self.new(l).grab_link }
       end
 
       attr_reader :avatar,
@@ -64,6 +63,7 @@ class IdsPlease
       def record_error(event, message)
         errors << event.to_s + ' has ' + message
       end
+      
     end
   end
 end
