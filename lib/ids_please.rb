@@ -4,6 +4,7 @@ require_relative 'ids_please/parsers'
 require_relative 'ids_please/grabbers'
 
 class IdsPlease
+  
   def self.parsers
     IdsPlease::Parsers
   end
@@ -72,4 +73,5 @@ class IdsPlease
     end
     unrecognized << link
   end
+  
 end
