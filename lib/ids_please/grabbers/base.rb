@@ -27,9 +27,9 @@ class IdsPlease
 
       def to_s
         line = ''
-        instance_variables.each do |iv|
+        self.instance_variables.each do |iv|
           next if iv == :@page_source
-          val = instance_variable_get(iv)
+          val = self.instance_variable_get(iv)
           next if val.nil? || val == ''
           line += ", \n#{iv}=#{val}"
         end
