@@ -5,11 +5,42 @@ command = ARGV.shift
 links = ARGV
 
 ids = IdsPlease.new(*links)
-case command
-when 'grab'
-  puts ids.grab
-when 'parse'
-  puts ids.parse
-else
-  puts 'Unknown command'
+hash =
+  case command
+  when 'grab'
+    ids.grab
+  when 'parse'
+    ids.parse
+  else
+    exit 'Unknown command'
+  end
+
+if command == 'grab'
+  hash.each do |social_network, grabbers_array|
+    puts social_network.to_s.capitalize + ': '
+    grabbers_array.each do |grabber|
+      grabber.to_h.each do |property, value|
+        unless value.nil? || value.to_s.empty? || property == :page_source
+
+          if value.class == Hash
+            value.delete_if { |_, v| v.nil? }
+            unless value.empty?
+              puts "  #{property}: "
+              value.each do |k, v|
+                puts "    #{k}: #{v}"
+              end
+            end
+          else
+            puts "  #{property}: #{value}"
+          end
+
+        end
+      end
+      puts "\n" # End of grabber
+    end
+    puts "\n" # End of social network
+  end
+end
+
+if command == 'parse'
 end
