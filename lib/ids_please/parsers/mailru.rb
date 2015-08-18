@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Mailru < IdsPlease::Parsers::Base
-
       MASK = /mail\.ru/i
 
       class << self
@@ -12,7 +11,6 @@ class IdsPlease
           id.split('?').first.split('#').first
         end
       end
-
     end
   end
 end

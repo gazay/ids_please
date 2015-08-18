@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Twitter < IdsPlease::Parsers::Base
-
       MASK = /twitter/i
 
       class << self
@@ -16,7 +15,6 @@ class IdsPlease
           end
         end
       end
-
     end
   end
 end

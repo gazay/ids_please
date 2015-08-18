@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Base
-
       class << self
         def to_sym
           name.split('::').last.downcase.to_sym
@@ -25,7 +24,6 @@ class IdsPlease
           /\A([\w\.\+-]{2,})/
         end
       end
-
     end
   end
 end

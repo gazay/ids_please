@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Blogger < IdsPlease::Parsers::Base
-
       MASK = /blogspot|blogger/i
 
       def self.interact(links)
@@ -20,7 +19,6 @@ class IdsPlease
           link.host.sub('.blogspot.com', '')
         end
       end
-
     end
   end
 end

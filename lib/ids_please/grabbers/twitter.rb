@@ -1,7 +1,6 @@
 class IdsPlease
   module Grabbers
     class Twitter < IdsPlease::Grabbers::Base
-
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -27,8 +26,6 @@ class IdsPlease
         record_error __method__, e.message
         return self
       end
-
-      private
 
       def find_network_id
         page_source.scan(/data-user-id="(\d+)"/).flatten.first
@@ -113,7 +110,6 @@ class IdsPlease
         record_error __method__, e.message
         return nil
       end
-
     end
   end
 end

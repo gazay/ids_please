@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Youtube < IdsPlease::Parsers::Base
-
       MASK = /youtu\.be|youtube/i
 
       class << self
@@ -15,7 +14,6 @@ class IdsPlease
           end
         end
       end
-
     end
   end
 end

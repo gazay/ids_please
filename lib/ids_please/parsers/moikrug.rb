@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Moikrug < IdsPlease::Parsers::Base
-
       MASK = /moikrug/i
 
       class << self
@@ -18,7 +17,6 @@ class IdsPlease
           link.host.sub('.moikrug.ru', '')
         end
       end
-
     end
   end
 end

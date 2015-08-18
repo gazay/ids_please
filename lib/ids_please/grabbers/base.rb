@@ -3,7 +3,7 @@ require 'open-uri'
 class IdsPlease
   module Grabbers
     class Base
-
+      
       def self.interact(links)
         links.map { |l| self.new(l).grab_link }
       end
@@ -63,8 +63,7 @@ class IdsPlease
       def record_error(event, message)
         errors << "#{event} has #{message}"
       end
-
+      
     end
-
   end
 end

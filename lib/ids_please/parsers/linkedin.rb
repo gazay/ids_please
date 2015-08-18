@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Linkedin < IdsPlease::Parsers::Base
-
       MASK = /linkedin/i
 
       class << self
@@ -19,7 +18,6 @@ class IdsPlease
           end
         end
       end
-
     end
   end
 end
