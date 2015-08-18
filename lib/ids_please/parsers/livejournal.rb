@@ -1,11 +1,10 @@
 class IdsPlease
   module Parsers
     class Livejournal < IdsPlease::Parsers::Base
+
       MASK = /livejournal/i
 
       class << self
-        private
-
         def parse_link(link)
           parsed = link.host.sub('.livejournal.com', '')
           parsed = link.host.split('.livejournal').first if parsed == link.host
@@ -13,6 +12,7 @@ class IdsPlease
           parsed
         end
       end
+
     end
   end
 end

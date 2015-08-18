@@ -1,6 +1,7 @@
 class IdsPlease
   module Parsers
     class GooglePlus < IdsPlease::Parsers::Base
+
       MASK = /google/i
 
       class << self
@@ -12,8 +13,6 @@ class IdsPlease
           links.map { |l| parse_link(l) }.compact
         end
 
-        private
-
         def parse_link(link)
           if matched = link.path.match(/\/(\+\w+)/)
             matched[1]
@@ -22,6 +21,7 @@ class IdsPlease
           end
         end
       end
+
     end
   end
 end

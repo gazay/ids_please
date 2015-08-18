@@ -1,11 +1,10 @@
 class IdsPlease
   module Parsers
     class Facebook < IdsPlease::Parsers::Base
+
       MASK = /fb\.me|fb\.com|facebook/i
 
       class << self
-        private
-
         def parse_link(link)
           query = CGI.parse(link.query) if link.query && !link.query.empty?
 
@@ -18,6 +17,7 @@ class IdsPlease
           end
         end
       end
+
     end
   end
 end

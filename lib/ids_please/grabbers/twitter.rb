@@ -1,6 +1,7 @@
 class IdsPlease
   module Grabbers
     class Twitter < IdsPlease::Grabbers::Base
+
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -28,88 +29,92 @@ class IdsPlease
       end
 
       def find_network_id
-        page_source.scan(/data-user-id="(\d+)"/).flatten.first
+        find_by_regex(/data-user-id="(\d+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_avatar
-        page_source.scan(/ProfileAvatar-image " src="([^"]+)"/).flatten.first
+        find_by_regex(/ProfileAvatar-image " src="([^"]+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_display_name
-        page_source.scan(/ProfileHeaderCard-nameLink[^>]+>([^<]+)</).flatten.first
+        find_by_regex(/ProfileHeaderCard-nameLink[^>]+>([^<]+)</)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_username
-        page_source.scan(/<title>[^\(]+\(@([^\)]+)\)/).flatten.first
+        find_by_regex(/<title>[^\(]+\(@([^\)]+)\)/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_description
-        CGI.unescapeHTML(page_source.scan(/ProfileHeaderCard-bio[^>]+>([^<]+)</).flatten.first.encode('utf-8')).strip
+        _desc = find_by_regex(/ProfileHeaderCard-bio[^>]+>([^<]+)</)
+        CGI.unescapeHTML(_desc.encode('utf-8')).strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_location
-        CGI.unescapeHTML(page_source.scan(/ProfileHeaderCard-locationText[^>]+>([^<]+)</).flatten.first.encode('utf-8')).strip
+        _loc = find_by_regex(/ProfileHeaderCard-locationText[^>]+>([^<]+)</)
+        CGI.unescapeHTML(_loc.encode('utf-8')).strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_join_date
-        CGI.unescapeHTML(page_source.scan(/ProfileHeaderCard-joinDateText[^>]+>([^<]+)</).flatten.first.encode('utf-8')).strip
+        _date = find_by_regex(/ProfileHeaderCard-joinDateText[^>]+>([^<]+)</)
+        CGI.unescapeHTML(_date.encode('utf-8')).strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_tweets
-        page_source.scan(/statuses_count&quot;:(\d+),&quot;/).flatten.first.to_i
+        find_by_regex(/statuses_count&quot;:(\d+),&quot;/).to_i
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_followers
-        page_source.scan(/followers_count&quot;:(\d+),&quot;/).flatten.first.to_i
+        find_by_regex(/followers_count&quot;:(\d+),&quot;/).to_i
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_following
-        page_source.scan(/friends_count&quot;:(\d+),&quot;/).flatten.first.to_i
+        find_by_regex(/friends_count&quot;:(\d+),&quot;/).to_i
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_favorites
-        page_source.scan(/favourites_count&quot;:(\d+),&quot;/).flatten.first.to_i
+        find_by_regex(/favourites_count&quot;:(\d+),&quot;/).to_i
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_listed
-        page_source.scan(/listed_count&quot;:(\d+),&quot;/).flatten.first.to_i
+        find_by_regex(/listed_count&quot;:(\d+),&quot;/).to_i
       rescue => e
         record_error __method__, e.message
         return nil
       end
+
     end
   end
 end

@@ -1,11 +1,10 @@
 class IdsPlease
   module Parsers
     class Odnoklassniki < IdsPlease::Parsers::Base
+
       MASK = /odnoklassniki|ok\.ru/i
 
       class << self
-        private
-
         def parse_link(link)
           if matched = link.path.match(/\/(\d{2,})/)
             matched[1]
@@ -16,6 +15,7 @@ class IdsPlease
           end
         end
       end
+
     end
   end
 end

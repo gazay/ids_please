@@ -1,11 +1,10 @@
 class IdsPlease
   module Parsers
     class Linkedin < IdsPlease::Parsers::Base
+
       MASK = /linkedin/i
 
       class << self
-        private
-
         def parse_link(link)
           query = CGI.parse(link.query) if link.query && !link.query.empty?
 
@@ -18,6 +17,7 @@ class IdsPlease
           end
         end
       end
+
     end
   end
 end
