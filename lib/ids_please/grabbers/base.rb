@@ -61,7 +61,7 @@ class IdsPlease
       end
 
       def record_error(event, message)
-        errors << event.to_s + ' has ' + message
+        errors << "#{event} has #{message}"
       end
       
     end
