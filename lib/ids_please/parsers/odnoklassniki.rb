@@ -1,6 +1,7 @@
 class IdsPlease
   module Parsers
     class Odnoklassniki < IdsPlease::Parsers::Base
+
       MASK = /odnoklassniki|ok\.ru/i
 
       class << self
@@ -16,6 +17,7 @@ class IdsPlease
           end
         end
       end
+
     end
   end
 end

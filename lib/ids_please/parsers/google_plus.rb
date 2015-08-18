@@ -1,6 +1,7 @@
 class IdsPlease
   module Parsers
     class GooglePlus < IdsPlease::Parsers::Base
+
       MASK = /google/i
 
       class << self
@@ -22,6 +23,7 @@ class IdsPlease
           end
         end
       end
+
     end
   end
 end

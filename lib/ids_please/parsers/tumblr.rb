@@ -1,6 +1,7 @@
 class IdsPlease
   module Parsers
     class Tumblr < IdsPlease::Parsers::Base
+
       MASK = /tumblr/i
 
       class << self
@@ -11,6 +12,7 @@ class IdsPlease
           link.host.sub('.tumblr.com', '')
         end
       end
+
     end
   end
 end
