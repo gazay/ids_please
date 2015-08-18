@@ -21,7 +21,6 @@ require_relative 'parsers/mailru'
 
 class IdsPlease
   module Parsers
-
     NETWORKS = {
       google_plus: IdsPlease::Parsers::GooglePlus,
       vkontakte: IdsPlease::Parsers::Vkontakte,
@@ -51,6 +50,5 @@ class IdsPlease
     def self.by_symbol(sym)
       NETWORKS[sym]
     end
-
   end
 end

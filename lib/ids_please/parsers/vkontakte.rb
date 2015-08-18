@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Vkontakte < IdsPlease::Parsers::Base
-
       MASK = /vk\.com|vkontakte/i
 
       class << self
@@ -20,7 +19,6 @@ class IdsPlease
           end
         end
       end
-
     end
   end
 end

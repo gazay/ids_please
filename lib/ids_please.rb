@@ -4,7 +4,7 @@ require_relative 'ids_please/parsers'
 require_relative 'ids_please/grabbers'
 
 class IdsPlease
-
+  
   def self.parsers
     IdsPlease::Parsers
   end
@@ -26,7 +26,7 @@ class IdsPlease
   end
 
   def recognized
-    Hash[@recognized.map { |parser, links| [ parser.to_sym, links ] }]
+    Hash[@recognized.map { |parser, links| [parser.to_sym, links] }]
   end
 
   def parse
@@ -46,7 +46,7 @@ class IdsPlease
       interactor = IdsPlease.send(interactors).by_symbol(network)
       interacted[network].concat interactor.interact(links)
     end
-    self.instance_variable_set(interacted_var(interactors), interacted)
+    instance_variable_set(interacted_var(interactors), interacted)
 
     interacted
   end
@@ -73,5 +73,5 @@ class IdsPlease
     end
     unrecognized << link
   end
-
+  
 end

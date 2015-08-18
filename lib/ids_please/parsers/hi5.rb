@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Hi5 < IdsPlease::Parsers::Base
-
       MASK = /hi5/i
 
       class << self
@@ -17,7 +16,6 @@ class IdsPlease
           end
         end
       end
-
     end
   end
 end

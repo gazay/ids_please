@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Reddit < IdsPlease::Parsers::Base
-
       MASK = /reddit/i
 
       class << self
@@ -11,7 +10,6 @@ class IdsPlease
           link.path.split('/')[2]
         end
       end
-
     end
   end
 end

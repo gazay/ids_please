@@ -3,18 +3,25 @@ require 'open-uri'
 class IdsPlease
   module Grabbers
     class Base
-
+      
       def self.interact(links)
         links.map { |l| self.new(l).grab_link }
       end
 
-      attr_reader :avatar, :display_name, :username, :link, :page_source, :network_id, :data, :counts
+      attr_reader :avatar,
+                  :display_name,
+                  :username,
+                  :link,
+                  :page_source,
+                  :network_id,
+                  :data,
+                  :counts
 
       def initialize(link)
         @link = link
       end
 
-      def grab_link(link)
+      def grab_link(_link)
         throw 'Base grabber can not grab anything'
       end
 
@@ -26,7 +33,7 @@ class IdsPlease
           next if val.nil? || val == ''
           line += ", \n#{iv}=#{val}"
         end
-        "#{self.class}##{self.object_id} #{line[1..-1]}"
+        "#{self.class}##{object_id} #{line[1..-1]}"
       end
 
       def to_h
@@ -48,6 +55,15 @@ class IdsPlease
       def page_source
         @page_source ||= open(link).read
       end
+
+      def errors
+        @errors ||= []
+      end
+
+      def record_error(event, message)
+        errors << "#{event} has #{message}"
+      end
+      
     end
   end
 end

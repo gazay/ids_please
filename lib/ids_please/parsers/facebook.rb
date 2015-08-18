@@ -1,7 +1,6 @@
 class IdsPlease
   module Parsers
     class Facebook < IdsPlease::Parsers::Base
-
       MASK = /fb\.me|fb\.com|facebook/i
 
       class << self
@@ -19,7 +18,6 @@ class IdsPlease
           end
         end
       end
-
     end
   end
 end
