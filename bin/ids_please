@@ -4,7 +4,7 @@ require 'ids_please'
 command = ARGV.shift
 links = ARGV
 
-ids = IdsPlease.new(*linls)
+ids = IdsPlease.new(*links)
 case command
 when 'grab'
   puts ids.grab
