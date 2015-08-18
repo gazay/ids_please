@@ -23,6 +23,8 @@ class IdsPlease
         return self
       end
 
+      private
+
       def find_network_id
         page_source.scan(/entity_id":"(\d+)"/).flatten.first
       rescue => e
