@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'ids_please'
+
+command = ARGV.shift
+links = ARGV
+
+ids = IdsPlease.new(*linls)
+case command
+when 'grab'
+  puts ids.grab
+when 'parse'
+  puts ids.parse
+else
+  puts 'Unknown command'
