@@ -25,6 +25,8 @@ class IdsPlease
         record_error __method__, e.message
         return self
       end
+      
+      private
 
       def find_network_id
         page_source.scan(/"user":{.+"id":"(\d+)"/).flatten.first
