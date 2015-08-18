@@ -12,3 +12,4 @@ when 'parse'
   puts ids.parse
 else
   puts 'Unknown command'
+end
