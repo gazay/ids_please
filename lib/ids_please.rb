@@ -65,11 +65,11 @@ class IdsPlease
     link = "http://#{link}" unless link =~ /\Ahttps?:\/\//
     parsed_link = URI(URI.encode(link))
 
-    found = IdsPlease::Parsers.to_a.find { |network| parsed_link.host =~ network::MASK }
+    network = IdsPlease::Parsers.to_a.find { |n| parsed_link.host =~ n::MASK }
 
-    if found
-      @recognized[found.to_sym] ||= []
-      @recognized[found.to_sym] << parsed_link
+    if network
+      @recognized[network.to_sym] ||= []
+      @recognized[network.to_sym] << parsed_link
     else
       @unrecognized << link
     end
