@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 ids_please_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(ids_please_dir) unless $LOAD_PATH.include?(ids_please_dir)
+require 'ids_please'
 require 'ids_please/cli'
 
 IdsPlease::CLI.run(ARGV)
