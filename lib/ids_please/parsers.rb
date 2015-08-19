@@ -52,5 +52,9 @@ class IdsPlease
       NETWORKS[sym]
     end
 
+    def self.to_a
+      NETWORKS.values
+    end
+
   end
 end
