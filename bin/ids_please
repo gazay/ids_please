@@ -23,7 +23,6 @@ if command == 'grab'
         unless value.nil? || value.to_s.empty? || property == :page_source
 
           if value.class == Hash
-            value.delete_if { |_, v| v.nil? }
             unless value.empty?
               puts "  #{property}: "
               value.each do |k, v|
@@ -43,4 +42,11 @@ if command == 'grab'
 end
 
 if command == 'parse'
+  hash.each do |social_network, permalinks_array|
+    puts social_network.to_s.capitalize + ': '
+    permalinks_array.each do |permalink|
+      puts "  #{permalink}"
+    end
+    puts "\n"
+  end
 end
