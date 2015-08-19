@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   s.rdoc_options = ['--charset=UTF-8']
   s.homepage = 'http://github.com/gazay/ids_please'
   s.require_paths = ['lib']
+  s.bindir = 'bin'
+  s.executables = 'ids_please'
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.add_development_dependency 'rake'
