@@ -90,23 +90,23 @@ class IdsPlease
     end
 
     def help
-      puts <<-HELP
-  IDs, please
-  Grab some hidden in html data from social account page
-  Get social network IDs or screen names from links to social network accounts
+      puts <<-HELP.gsub(/^ {8}/, '')
+        IDs, please
+        Grab some hidden in html data from social account page
+        Get social network IDs or screen names from links to social network accounts
 
-  Usage:
-    ids_please command [links]
+        Usage:
+          ids_please command [links]
 
-  Available commands:
-    grab          grab some hidden in html data from social account page (avatar, username, id...)
-    parse         get screen names from links to social network accounts
-    recognize     check that the link is for a known social network
+        Available commands:
+          grab          grab some hidden in html data from social account page (avatar, username, id...)
+          parse         get screen names from links to social network accounts
+          recognize     check that the link is for a known social network
 
-  Examples:
-    ids_please grab https://instagram.com/microsoft
-    ids_please parse https://facebook.com/Microsoft https://instagram.com/microsoft
-  HELP
+        Examples:
+          ids_please grab https://instagram.com/microsoft
+          ids_please parse https://facebook.com/Microsoft https://instagram.com/microsoft
+      HELP
     end
   end
 end
