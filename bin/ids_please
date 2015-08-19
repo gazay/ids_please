@@ -16,6 +16,10 @@ when 'help', nil
   puts '  grab          grab some hidden in html data from social account page (avatar, username, id...)'
   puts '  parse         get screen names from links to social network accounts'
   puts '  recognize     check that the link is for a known social network'
+  puts "\n"
+  puts 'Examples:'
+  puts '  ids_please grab https://instagram.com/microsoft'
+  puts '  ids_please parse https://facebook.com/Microsoft https://instagram.com/microsoft'
   exit
 else
   abort "Unknown command. Enter 'ids_please help' for instructions"
