@@ -23,7 +23,7 @@ class IdsPlease
       end
 
       def find_network_id
-        page_source.scan(/data-oid="(\d+)"/).flatten.first
+        page_source.scan(/oid="(\d+)"/).flatten.first
       rescue => e
         record_error __method__, e.message
         return nil
