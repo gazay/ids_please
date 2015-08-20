@@ -1,6 +1,7 @@
 class IdsPlease
   module Grabbers
     class Facebook < IdsPlease::Grabbers::Base
+
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -26,49 +27,57 @@ class IdsPlease
       private
 
       def find_network_id
-        page_source.scan(/entity_id":"(\d+)"/).flatten.first
+        find_by_regex(/entity_id":"(\d+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_avatar
-        CGI.unescapeHTML(page_source.scan(/og:image" content="([^"]+)"/).flatten.first.encode('utf-8'))
+        CGI.unescapeHTML(
+          find_by_regex(/og:image" content="([^"]+)"/).encode('utf-8')
+        )
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_display_name
-        CGI.unescapeHTML(page_source.scan(/og:title" content="([^"]+)"/).flatten.first.encode('utf-8'))
+        CGI.unescapeHTML(
+          find_by_regex(/og:title" content="([^"]+)"/).encode('utf-8')
+        )
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_username
-        page_source.scan(/og:url" content="[^"]+\/([^\/"]+)"/).flatten.first
+        find_by_regex(/og:url" content="[^"]+\/([^\/"]+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_type
-        CGI.unescapeHTML(page_source.scan(/og:type" content="([^"]+)"/).flatten.first.encode('utf-8')).strip
+        CGI.unescapeHTML(
+          find_by_regex(/og:type" content="([^"]+)"/).encode('utf-8')
+        ).strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_description
-        CGI.unescapeHTML(page_source.scan(/og:description" content="([^"]+)"/).flatten.first.encode('utf-8')).strip
+        CGI.unescapeHTML(
+          find_by_regex(/og:description" content="([^"]+)"/).encode('utf-8')
+        ).strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_likes
-        if likes = page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first
+        if likes = find_by_regex(/>([^"]+) <span class=".+">likes/)
           likes.tr(',', '').to_i
         end
       rescue => e
@@ -77,13 +86,14 @@ class IdsPlease
       end
 
       def find_visits
-        if visits = page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first
+        if visits = find_by_regex(/likes.+>([^"]+)<\/span> <span class=".+">visits/)
           visits.tr(',', '').to_i
         end
       rescue => e
         record_error __method__, e.message
         return nil
       end
+
     end
   end
 end

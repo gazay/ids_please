@@ -2,6 +2,7 @@ class IdsPlease
   module Parsers
     class Base
       class << self
+
         def to_sym
           name.split('::').last.downcase.to_sym
         end
@@ -14,8 +15,6 @@ class IdsPlease
           end.compact
         end
 
-        private
-
         def parse_link(link)
           link.path.split('/')[1]
         end
@@ -23,6 +22,7 @@ class IdsPlease
         def valid_id_regex
           /\A([\w\.\+-]{2,})/
         end
+
       end
     end
   end

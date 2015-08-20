@@ -1,6 +1,7 @@
 class IdsPlease
   module Grabbers
     class GooglePlus < IdsPlease::Grabbers::Base
+
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -23,42 +24,42 @@ class IdsPlease
       end
 
       def find_network_id
-        page_source.scan(/oid="(\d+)"/).flatten.first
+        find_by_regex(/oid="(\d+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_avatar
-        'https:' + page_source.scan(/guidedhelpid="profile_photo"><img src="([^"]+)"/).flatten.first
+        "https:#{find_by_regex(/guidedhelpid="profile_photo"><img src="([^"]+)"/)}"
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_display_name
-        page_source.scan(/og:title" content="([^"]+)"/).flatten.first.gsub(' - Google+', '')
+        find_by_regex(/og:title" content="([^"]+)"/).gsub(' - Google+', '')
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_username
-        '+' + page_source.scan(/&quot;https:\/\/plus.google.com\/\+(.+?)&quot;/).flatten.first
+        "+#{find_by_regex(/&quot;https:\/\/plus.google.com\/\+(.+?)&quot;/)}"
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_description
-        page_source.scan(/name="Description" content="([^"]+)">/).flatten.first.encode('utf-8')
+        find_by_regex(/name="Description" content="([^"]+)">/).encode('utf-8')
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_followers
-        if followers = page_source.scan(/">([^"]+)<\/span> followers</).flatten.first
+        if followers = find_by_regex(/">([^"]+)<\/span> followers</)
           followers.tr(',', '').to_i
         end
       rescue => e
@@ -67,13 +68,14 @@ class IdsPlease
       end
 
       def find_views
-        if views = page_source.scan(/">([^"]+)<\/span> views</).flatten.first
+        if views = find_by_regex(/">([^"]+)<\/span> views</)
           views.tr(',', '').to_i
         end
       rescue => e
         record_error __method__, e.message
         return nil
       end
+
     end
   end
 end

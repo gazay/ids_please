@@ -3,7 +3,7 @@ require 'open-uri'
 class IdsPlease
   module Grabbers
     class Base
-      
+
       def self.interact(links)
         links.map { |l| self.new(l).grab_link }
       end
@@ -33,7 +33,7 @@ class IdsPlease
           next if val.nil? || val == ''
           line += ", \n#{iv}=#{val}"
         end
-        "#{self.class}##{object_id} #{line[1..-1]}"
+        "#{self.class}##{self.object_id} #{line[1..-1]}"
       end
 
       def to_h
@@ -63,7 +63,11 @@ class IdsPlease
       def record_error(event, message)
         errors << "#{event} has #{message}"
       end
-      
+
+      def find_by_regex(reg)
+        page_source.scan(reg).flatten.first
+      end
+
     end
   end
 end
