@@ -35,7 +35,7 @@ class IdsPlease
 
       def find_avatar
         CGI.unescapeHTML(
-          find_by_regex(/og:image" content="([^"]+)"/).encode('utf-8')
+          find_by_regex(/class="profilePic img" alt=".+" src="(.+?)"/)
         )
       rescue => e
         record_error __method__, e.message
