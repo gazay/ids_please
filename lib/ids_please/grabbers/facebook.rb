@@ -52,7 +52,7 @@ class IdsPlease
       end
 
       def find_username
-        find_by_regex(/og:url" content="[^"]+\/([^\/"]+)"/)
+        @link.match(/[^"]+\/([^\/"]+)/)[1]
       rescue => e
         record_error __method__, e.message
         return nil
@@ -69,7 +69,7 @@ class IdsPlease
 
       def find_description
         CGI.unescapeHTML(
-          find_by_regex(/class=".+">(.+?)<\/div><div class=".+"><a href=".+">Read More/).encode('utf-8')
+          find_by_regex(/class="_c24 _50f3">(.+?)<\/div>/).encode('utf-8')
         ).strip
       rescue => e
         record_error __method__, e.message

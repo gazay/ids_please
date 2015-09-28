@@ -3,6 +3,7 @@ require 'open-uri'
 class IdsPlease
   module Grabbers
     class Base
+      require 'user_agent_randomizer'
 
       def self.interact(links)
         links.map { |l| self.new(l).grab_link }
@@ -52,8 +53,12 @@ class IdsPlease
         to_s
       end
 
+      def agent
+        @agent = UserAgentRandomizer::UserAgent.fetch(type: "desktop_browser").string
+      end
+
       def page_source
-        @page_source ||= open(link).read
+        @page_source ||= open(link, 'User-Agent' => agent).read
       end
 
       def errors
