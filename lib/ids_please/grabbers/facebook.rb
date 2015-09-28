@@ -35,7 +35,7 @@ class IdsPlease
 
       def find_avatar
         CGI.unescapeHTML(
-          find_by_regex(/class="profilePic img" alt=".+" src="(.+?)"/)
+          find_by_regex(/class="profilePic img" alt=".+" src="(.+?)"/).encode('utf-8')
         )
       rescue => e
         record_error __method__, e.message
@@ -44,7 +44,7 @@ class IdsPlease
 
       def find_display_name
         CGI.unescapeHTML(
-          find_by_regex(/og:title" content="([^"]+)"/).encode('utf-8')
+          find_by_regex(/<span itemprop="name">(.+?)<\/span>/).encode('utf-8')
         )
       rescue => e
         record_error __method__, e.message
