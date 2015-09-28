@@ -69,7 +69,7 @@ class IdsPlease
 
       def find_description
         CGI.unescapeHTML(
-          find_by_regex(/og:description" content="([^"]+)"/).encode('utf-8')
+          find_by_regex(/class=".+">(.+?)<\/div><div class=".+"><a href=".+">Read More/).encode('utf-8')
         ).strip
       rescue => e
         record_error __method__, e.message
