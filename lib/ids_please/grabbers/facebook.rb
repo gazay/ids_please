@@ -3,6 +3,7 @@ class IdsPlease
     class Facebook < IdsPlease::Grabbers::Base
 
       def grab_link
+        @link         = find_canonical_link || @link
         @network_id   = find_network_id
         @avatar       = find_avatar
         @display_name = find_display_name
@@ -25,6 +26,13 @@ class IdsPlease
       end
 
       private
+
+      def find_canonical_link
+        find_by_regex(/type="hidden" autocomplete="off" name="next" value="(.+?)" \/>/).gsub('/timeline/','')
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
 
       def find_network_id
         find_by_regex(/entity_id":"(\d+)"/)
