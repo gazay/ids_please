@@ -31,7 +31,11 @@ class IdsPlease
       end
 
       def find_avatar
-        "https:#{find_by_regex(/guidedhelpid="profile_photo"><img src="([^"]+)"/)}"
+        if partial_avatar = find_by_regex(/guidedhelpid="profile_photo"><img src="([^"]+)"/)
+          "https:#{partial_avatar}"
+        else
+          return nil
+        end
       rescue => e
         record_error __method__, e.message
         return nil
