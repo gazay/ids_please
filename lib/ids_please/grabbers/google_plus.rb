@@ -24,7 +24,7 @@ class IdsPlease
       end
 
       def find_network_id
-        find_by_regex(/data:["(\d+)",/)
+        find_by_regex(/data:\["(\d+)",/)
       rescue => e
         record_error __method__, e.message
         return nil
