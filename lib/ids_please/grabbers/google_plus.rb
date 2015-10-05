@@ -42,7 +42,7 @@ class IdsPlease
       end
 
       def find_display_name
-        find_by_regex(/og:title" content="([^"]+)"/).gsub(' - Google+', '')
+        find_by_regex(/og:title" content="([^"]+)"/).split('-').try(:first).try(:strip)
       rescue => e
         record_error __method__, e.message
         return nil
