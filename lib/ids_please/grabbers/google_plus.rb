@@ -42,14 +42,14 @@ class IdsPlease
       end
 
       def find_display_name
-        find_by_regex(/og:title" content="([^"]+)"/).split('-').try(:first).try(:strip)
+        find_by_regex(/og:title" content="([^"]+)"/).split('-').first.strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_username
-        "+#{find_by_regex(/&quot;https:\/\/plus.google.com\/\+(.+?)&quot;/)}"
+        "+" + find_by_regex(/data:\[.+\[,,"https:\/\/plus.google.com\/\+(.+?)".+\/\/lh5.googleusercontent.com/)
       rescue => e
         record_error __method__, e.message
         return nil
