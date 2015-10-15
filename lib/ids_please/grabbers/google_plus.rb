@@ -24,28 +24,32 @@ class IdsPlease
       end
 
       def find_network_id
-        find_by_regex(/oid="(\d+)"/)
+        find_by_regex(/data:\["(\d+)",/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_avatar
-        "https:#{find_by_regex(/guidedhelpid="profile_photo"><img src="([^"]+)"/)}"
+        if partial_avatar = find_by_regex(/guidedhelpid="profile_photo"><img src="([^"]+)"/)
+          "https:#{partial_avatar}"
+        else
+          return nil
+        end
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_display_name
-        find_by_regex(/og:title" content="([^"]+)"/).gsub(' - Google+', '')
+        find_by_regex(/og:title" content="([^"]+)"/).split('-').first.strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_username
-        "+#{find_by_regex(/&quot;https:\/\/plus.google.com\/\+(.+?)&quot;/)}"
+        "+" + find_by_regex(/data:\[.+\[,,"https:\/\/plus.google.com\/\+(.+?)".+\/\/lh5.googleusercontent.com/)
       rescue => e
         record_error __method__, e.message
         return nil
