@@ -3,10 +3,10 @@ class IdsPlease
     class Vimeo < IdsPlease::Grabbers::Base
 
       def grab_link
-        @network_id   = find_network_id
+        # @network_id   = find_network_id
         @avatar       = find_avatar
         @display_name = find_display_name
-        @username     = find_username
+        # @username     = find_username
 
         self
       rescue => e
