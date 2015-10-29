@@ -5,7 +5,7 @@ require_relative 'grabbers/instagram'
 require_relative 'grabbers/twitter'
 require_relative 'grabbers/mailru'
 require_relative 'grabbers/google_plus'
-require_relative 'grabbers/vimeo',
+require_relative 'grabbers/vimeo'
 require_relative 'grabbers/youtube'
 
 class IdsPlease
