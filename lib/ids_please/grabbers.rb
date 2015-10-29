@@ -5,7 +5,8 @@ require_relative 'grabbers/instagram'
 require_relative 'grabbers/twitter'
 require_relative 'grabbers/mailru'
 require_relative 'grabbers/google_plus'
-require_relative 'grabbers/vimeo'
+require_relative 'grabbers/vimeo',
+require_relative 'grabbers/youtube'
 
 class IdsPlease
   module Grabbers
@@ -17,7 +18,8 @@ class IdsPlease
       instagram: IdsPlease::Grabbers::Instagram,
       mailru: IdsPlease::Grabbers::Mailru,
       google_plus: IdsPlease::Grabbers::GooglePlus,
-      vimeo: IdsPlease::Grabbers::Vimeo
+      vimeo: IdsPlease::Grabbers::Vimeo,
+      youtube: IdsPlease::Grabbers::Youtube
     }
 
     def self.each
