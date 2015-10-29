@@ -22,7 +22,7 @@ class IdsPlease
       end
 
       def find_display_name
-        find_by_regex(/og:title" content"([^"]+)"/)
+        find_by_regex(/og:title" content="([^"]+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
