@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.executables = 'ids_please'
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.add_dependency 'user-agent-randomizer'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
 end
