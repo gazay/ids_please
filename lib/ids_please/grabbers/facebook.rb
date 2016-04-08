@@ -35,7 +35,7 @@ class IdsPlease
 
       def find_avatar
         CGI.unescapeHTML(
-          find_by_regex(/og:image" content="([^"]+)"/).encode('utf-8')
+          find_by_regex(/profilePic\simg"\salt=[^=]+="([^"]+)/).encode('utf-8')
         )
       rescue => e
         record_error __method__, e.message
@@ -44,7 +44,7 @@ class IdsPlease
 
       def find_display_name
         CGI.unescapeHTML(
-          find_by_regex(/og:title" content="([^"]+)"/).encode('utf-8')
+          find_by_regex(/fb-timeline-cover-name">([^<]+)/).encode('utf-8')
         )
       rescue => e
         record_error __method__, e.message
@@ -52,16 +52,14 @@ class IdsPlease
       end
 
       def find_username
-        find_by_regex(/og:url" content="[^"]+\/([^\/"]+)"/)
+        find_by_regex(/link\srel="canonical"\shref="([^"]+)/)
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_type
-        CGI.unescapeHTML(
-          find_by_regex(/og:type" content="([^"]+)"/).encode('utf-8')
-        ).strip
+        find_by_regex(/type":"Person/) ? 'perosnal' : 'group'
       rescue => e
         record_error __method__, e.message
         return nil
@@ -69,7 +67,7 @@ class IdsPlease
 
       def find_description
         CGI.unescapeHTML(
-          find_by_regex(/og:description" content="([^"]+)"/).encode('utf-8')
+          find_by_regex(/name="description" content="([^"]+)"/).encode('utf-8')
         ).strip
       rescue => e
         record_error __method__, e.message
