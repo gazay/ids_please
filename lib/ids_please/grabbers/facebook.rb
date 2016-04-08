@@ -44,7 +44,7 @@ class IdsPlease
 
       def find_display_name
         CGI.unescapeHTML(
-          find_by_regex(/fb-timeline-cover-name">([^<]+)/).encode('utf-8')
+          find_by_regex(/pageTitle">([^<\|]+)/).strip.encode('utf-8')
         )
       rescue => e
         record_error __method__, e.message
@@ -52,7 +52,8 @@ class IdsPlease
       end
 
       def find_username
-        find_by_regex(/link\srel="canonical"\shref="([^"]+)/)
+        find_by_regex(/link\srel="canonical"\shref="https:\/\/facebook\.com\/([^"]+)/) ||
+          find_by_regex(/;\sURL=\/([^\/\?]+)/)
       rescue => e
         record_error __method__, e.message
         return nil
