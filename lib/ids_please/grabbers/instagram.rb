@@ -30,7 +30,7 @@ class IdsPlease
       private
 
       def find_network_id
-        find_by_regex(/"user":{.+"id":"(\d+)"/)
+        find_by_regex(/"id":"(\d+)","biography"/)
       rescue => e
         record_error __method__, e.message
         return nil
@@ -54,21 +54,21 @@ class IdsPlease
       end
 
       def find_username
-        find_by_regex(/"user":{"username":"([^"]+)"/).gsub('\\', '')
+        find_by_regex(/"user":{"username":"([^"]+)"/).to_s.gsub('\\', '')
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_bio
-        CGI.unescapeHTML(find_by_regex(/"biography":"([^"]+)"/)).strip
+        CGI.unescapeHTML(find_by_regex(/"biography":"([^"]+)"/).to_s).strip
       rescue => e
         record_error __method__, e.message
         return nil
       end
 
       def find_website
-        CGI.unescapeHTML(find_by_regex(/"user":{.+"external_url":"([^"]+)"/).gsub('\\', '')).strip
+        CGI.unescapeHTML(find_by_regex(/"user":{.+"external_url":"([^"]+)"/).to_s.gsub('\\', '')).strip
       rescue => e
         record_error __method__, e.message
         return nil
