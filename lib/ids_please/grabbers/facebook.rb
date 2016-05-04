@@ -3,43 +3,96 @@ class IdsPlease
     class Facebook < IdsPlease::Grabbers::Base
 
       def grab_link
-        @network_id   = page_source.scan(/entity_id":"(\d+)"/).flatten.first ||page_source.scan(/al:ios:url" content="fb:\/\/page\/\?id=(\d+)"/).flatten.first
-        @avatar       = page_source.scan(/og:image" content="([^"]+)"/).flatten.first
-        @display_name = page_source.scan(/og:title" content="([^"]+)"/).flatten.first
-        @username     = page_source.scan(/og:url" content="[^"]+\/([^\/"]+)"/).flatten.first
-        @avatar       = CGI.unescapeHTML(@avatar.encode('utf-8')) if @avatar
-        @display_name = CGI.unescapeHTML(@display_name.encode('utf-8')) if @display_name
-        @data = {}
-        {
-          type: page_source.scan(/og:type" content="([^"]+)"/).flatten.first.to_s.encode('utf-8'),
-          description: page_source.scan(/og:description" content="([^"]+)"/).flatten.first.to_s.encode('utf-8'),
-        }.each do |k, v|
-          next if v.nil? || v == ''
-          @data[k] = CGI.unescapeHTML(v).strip
-        end
+        @network_id   = find_network_id
+        @avatar       = find_avatar
+        @display_name = find_display_name
+        @username     = find_username
+
         @counts = {
-          likes:  likes,
-          visits: visits,
-        }.delete_if {|k,v| v.nil? }
+          likes:  find_likes,
+          visits: find_visits
+        }.delete_if { |_k, v| v.nil? }
+
+        @data = {
+          type: find_type,
+          description: find_description
+        }.delete_if { |_k, v| v.nil? }
+
         self
       rescue => e
-        p e
+        record_error __method__, e.message
         return self
       end
 
-      def likes
-        page_source.scan(/>([^"]+) <span class=".+">likes/).flatten.first.to_s.tr(',','').to_i
+      private
+
+      def find_network_id
+        find_by_regex(/entity_id":"(\d+)"/) || find_by_regex(/al:ios:url" content="fb:\/\/page\/\?id=(\d+)"/)
       rescue => e
-        p e
+        record_error __method__, e.message
         return nil
       end
 
-      def visits
-        page_source.scan(/likes.+>([^"]+)<\/span> <span class=".+">visits/).flatten.first.to_s.tr(',','').to_i
+      def find_avatar
+        CGI.unescapeHTML(
+          find_by_regex(/profilePic\simg"\salt=[^=]+="([^"]+)/).encode('utf-8')
+        )
       rescue => e
-        p e
+        record_error __method__, e.message
         return nil
       end
+
+      def find_display_name
+        CGI.unescapeHTML(
+          find_by_regex(/pageTitle">([^<\|]+)/).strip.encode('utf-8')
+        )
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_username
+        find_by_regex(/link\srel="canonical"\shref="https:\/\/facebook\.com\/([^"]+)/) ||
+          find_by_regex(/;\sURL=\/([^\/\?]+)/)
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_type
+        find_by_regex(/type":"Person/) ? 'perosnal' : 'group'
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_description
+        CGI.unescapeHTML(
+          find_by_regex(/name="description" content="([^"]+)"/).encode('utf-8')
+        ).strip
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_likes
+        if likes = find_by_regex(/>([^"]+) <span class=".+">likes/)
+          likes.tr(',', '').to_i
+        end
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_visits
+        if visits = find_by_regex(/likes.+>([^"]+)<\/span> <span class=".+">visits/)
+          visits.tr(',', '').to_i
+        end
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
     end
   end
 end

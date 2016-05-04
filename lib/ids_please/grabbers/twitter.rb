@@ -3,30 +3,116 @@ class IdsPlease
     class Twitter < IdsPlease::Grabbers::Base
 
       def grab_link
-        @network_id   = page_source.scan(/data-user-id="(\d+)"/).flatten.first
-        @avatar       = page_source.scan(/ProfileAvatar-image " src="([^"]+)"/).flatten.first
-        @display_name = page_source.scan(/ProfileHeaderCard-nameLink[^>]+>([^<]+)</).flatten.first
-        @username     = page_source.scan(/<title>[^\(]+\(@([^\)]+)\)/).flatten.first
-        @data = {}
-        {
-          description: page_source.scan(/ProfileHeaderCard-bio[^>]+>([^<]+)</).flatten.first.to_s.encode('utf-8'),
-          location: page_source.scan(/ProfileHeaderCard-locationText[^>]+>([^<]+)</).flatten.first.to_s.encode('utf-8'),
-          join_date: page_source.scan(/ProfileHeaderCard-joinDateText[^>]+>([^<]+)</).flatten.first.to_s.encode('utf-8'),
-        }.each do |k, v|
-          next if v.nil? || v == ''
-          @data[k] = CGI.unescapeHTML(v).strip
-        end
+        @network_id   = find_network_id
+        @avatar       = find_avatar
+        @display_name = find_display_name
+        @username     = find_username
+
         @counts = {
-          tweets: page_source.scan(/statuses_count&quot;:(\d+),&quot;/).flatten.first.to_i,
-          following: page_source.scan(/friends_count&quot;:(\d+),&quot;/).flatten.first.to_i,
-          followers: page_source.scan(/followers_count&quot;:(\d+),&quot;/).flatten.first.to_i,
-          favorites: page_source.scan(/favourites_count&quot;:(\d+),&quot;/).flatten.first.to_i,
-          lists: page_source.scan(/listed_count&quot;:(\d+),&quot;/).flatten.first.to_i,
-        }
+          tweets: find_tweets,
+          following: find_following,
+          followers: find_followers,
+          favorites: find_favorites,
+          lists: find_listed
+        }.delete_if { |_k, v| v.nil? }
+
+        @data = {
+          description: find_description,
+          location: find_location,
+          join_date: find_join_date
+        }.delete_if { |_k, v| v.nil? }
+
         self
       rescue => e
-        p e
+        record_error __method__, e.message
         return self
+      end
+
+      def find_network_id
+        find_by_regex(/data-user-id="(\d+)"/)
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_avatar
+        find_by_regex(/ProfileAvatar-image " src="([^"]+)"/)
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_display_name
+        find_by_regex(/ProfileHeaderCard-nameLink[^>]+>([^<]+)</)
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_username
+        find_by_regex(/<title>[^\(]+\(@([^\)]+)\)/)
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_description
+        _desc = find_by_regex(/ProfileHeaderCard-bio[^>]+>([^<]+)</)
+        CGI.unescapeHTML(_desc.encode('utf-8')).strip
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_location
+        _loc = find_by_regex(/ProfileHeaderCard-locationText[^>]+>([^<]+)</)
+        CGI.unescapeHTML(_loc.encode('utf-8')).strip
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_join_date
+        _date = find_by_regex(/ProfileHeaderCard-joinDateText[^>]+>([^<]+)</)
+        CGI.unescapeHTML(_date.encode('utf-8')).strip
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_tweets
+        find_by_regex(/statuses_count&quot;:(\d+),&quot;/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_followers
+        find_by_regex(/followers_count&quot;:(\d+),&quot;/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_following
+        find_by_regex(/friends_count&quot;:(\d+),&quot;/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_favorites
+        find_by_regex(/favourites_count&quot;:(\d+),&quot;/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_listed
+        find_by_regex(/listed_count&quot;:(\d+),&quot;/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
       end
 
     end

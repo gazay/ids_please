@@ -12,8 +12,6 @@ class IdsPlease
           end.compact
         end
 
-        private
-
         def parse_link(link)
           link.host.sub('.moikrug.ru', '')
         end

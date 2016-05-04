@@ -26,7 +26,7 @@ class IdsPlease
   end
 
   def recognized
-    Hash[@recognized.map { |parser, links| [ parser.to_sym, links ] }]
+    Hash[@recognized.map { |parser, links| [parser.to_sym, links] }]
   end
 
   def parse
@@ -39,22 +39,22 @@ class IdsPlease
 
   private
 
-  def interact(interactors = :parsers)
+  def interact(interactors_group = :parsers)
     recognize
     interacted = Hash.new { |hash, network| hash[network] = [] }
     @recognized.each do |network, links|
-      interactor = IdsPlease.send(interactors).by_symbol(network)
+      interactor = IdsPlease.send(interactors_group).by_symbol(network)
       interacted[network].concat interactor.interact(links)
     end
-    self.instance_variable_set(interacted_var(interactors), interacted)
+    instance_variable_set(interacted_var(interactors_group), interacted)
 
     interacted
   end
 
-  def interacted_var(interactors)
-    if interactors == :parsers
+  def interacted_var(interactors_group)
+    if interactors_group == :parsers
       :@parsed
-    elsif interactors == :grabbers
+    elsif interactors_group == :grabbers
       :@grabbed
     else
       throw 'Wrong interactors type'
@@ -64,14 +64,14 @@ class IdsPlease
   def recognize_link(link)
     link = "http://#{link}" unless link =~ /\Ahttps?:\/\//
     parsed_link = URI(URI.encode(link))
-    IdsPlease::Parsers.each do |network|
-      if parsed_link.host =~ network::MASK
-        @recognized[network.to_sym] ||= []
-        @recognized[network.to_sym] << parsed_link
-        return
-      end
-    end
-    unrecognized << link
-  end
 
+    network = IdsPlease::Parsers.to_a.find { |n| parsed_link.host =~ n::MASK }
+
+    if network
+      @recognized[network.to_sym] ||= []
+      @recognized[network.to_sym] << parsed_link
+    else
+      @unrecognized << link
+    end
+  end
 end

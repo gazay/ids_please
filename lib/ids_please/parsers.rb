@@ -44,12 +44,12 @@ class IdsPlease
       mailru: IdsPlease::Parsers::Mailru
     }
 
-    def self.each
-      NETWORKS.values.each { |n| yield n }
-    end
-
     def self.by_symbol(sym)
       NETWORKS[sym]
+    end
+
+    def self.to_a
+      NETWORKS.values
     end
 
   end

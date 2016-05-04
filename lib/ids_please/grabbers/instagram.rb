@@ -5,25 +5,96 @@ class IdsPlease
     class Instagram < IdsPlease::Grabbers::Base
 
       def grab_link
-        @network_id   = page_source.scan(/"user":{.+"id":"(\d+)"/).flatten.first
-        @avatar       = page_source.scan(/"user":{.+"profile_pic_url":"([^"]+)"/).flatten.first.gsub('\\', '')
-        @display_name = page_source.scan(/"user":{.+"full_name":"([^"]+)"/).flatten.first
-        @username     = page_source.scan(/"user":{"username":"([^"]+)"/).flatten.first.gsub('\\', '')
-        @data = {
-          bio: page_source.scan(/"biography":"([^"]+)"/).flatten.first,
-          website: page_source.scan(/"user":{.+"external_url":"([^"]+)"/).flatten.first.gsub('\\', ''),
-        }
+        @network_id   = find_network_id
+        @avatar       = find_avatar
+        @display_name = find_display_name
+        @username     = find_username
+
         @counts = {
-          media: page_source.scan(/"media":{"count":(\d+)/).flatten.first.to_i,
-          followed_by: page_source.scan(/"followed_by":{"count":(\d+)/).flatten.first.to_i,
-          follows: page_source.scan(/"follows":{"count":(\d+)/).flatten.first.to_i,
-        }
-        @display_name = @display_name.gsub(/\\u([\da-fA-F]{4})/) {|m| [$1].pack("H*").unpack("n*").pack("U*")}
+          media: find_media,
+          followed_by: find_followed_by,
+          follows: find_follows
+        }.delete_if { |_k, v| v.nil? }
+
+        @data = {
+          bio: find_bio,
+          website: find_website
+        }.delete_if { |_k, v| v.nil? }
+
         self
       rescue => e
-        p e
+        record_error __method__, e.message
         return self
       end
+
+      private
+
+      def find_network_id
+        find_by_regex(/"id":"(\d+)","biography"/)
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_avatar
+        find_by_regex(/"user":{.+"profile_pic_url":"([^"]+)"/).gsub('\\', '')
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_display_name
+        _display_name = find_by_regex(/"user":{.+"full_name":"([^"]+)"/)
+        _display_name.gsub(/\\u([\da-fA-F]{4})/) { |_m|
+          [Regexp.last_match(1)].pack('H*').unpack('n*').pack('U*')
+        }
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_username
+        find_by_regex(/"user":{"username":"([^"]+)"/).to_s.gsub('\\', '')
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_bio
+        CGI.unescapeHTML(find_by_regex(/"biography":"([^"]+)"/).to_s).strip
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_website
+        CGI.unescapeHTML(find_by_regex(/"user":{.+"external_url":"([^"]+)"/).to_s.gsub('\\', '')).strip
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_media
+        find_by_regex(/"media":{"count":(\d+)/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_followed_by
+        find_by_regex(/"followed_by":{"count":(\d+)/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
+      def find_follows
+        find_by_regex(/"follows":{"count":(\d+)/).to_i
+      rescue => e
+        record_error __method__, e.message
+        return nil
+      end
+
     end
   end
 end

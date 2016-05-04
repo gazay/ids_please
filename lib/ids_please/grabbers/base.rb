@@ -8,13 +8,20 @@ class IdsPlease
         links.map { |l| self.new(l).grab_link }
       end
 
-      attr_reader :avatar, :display_name, :username, :link, :page_source, :network_id, :data, :counts
+      attr_reader :avatar,
+                  :display_name,
+                  :username,
+                  :link,
+                  :page_source,
+                  :network_id,
+                  :data,
+                  :counts
 
       def initialize(link)
         @link = link
       end
 
-      def grab_link(link)
+      def grab_link(_link)
         throw 'Base grabber can not grab anything'
       end
 
@@ -48,6 +55,19 @@ class IdsPlease
       def page_source
         @page_source ||= open(link).read
       end
+
+      def errors
+        @errors ||= []
+      end
+
+      def record_error(event, message)
+        errors << "#{event} has #{message}"
+      end
+
+      def find_by_regex(reg)
+        page_source.scan(reg).flatten.first
+      end
+
     end
   end
 end

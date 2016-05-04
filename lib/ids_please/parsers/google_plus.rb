@@ -13,8 +13,6 @@ class IdsPlease
           links.map { |l| parse_link(l) }.compact
         end
 
-        private
-
         def parse_link(link)
           if matched = link.path.match(/\/(\+\w+)/)
             matched[1]
