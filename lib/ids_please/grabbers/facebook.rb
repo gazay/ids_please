@@ -27,7 +27,8 @@ class IdsPlease
       private
 
       def find_network_id
-        find_by_regex(/entity_id":"(\d+)"/)
+        find_by_regex(/entity_id":"(\d+)"/) || find_by_regex(/al:ios:url" content="fb:\/\/page\/\?id=(\d+)"/) ||
+        find_by_regex(/"pageID":"(\d+)"/)
       rescue => e
         record_error __method__, e.message
         return nil

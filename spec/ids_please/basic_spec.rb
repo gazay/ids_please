@@ -168,6 +168,11 @@ describe IdsPlease do
         expect(@recognizer.parsed[:facebook]).to eq(%w(fb_acc fb_acc2))
       end
 
+      it 'get right id from facebook Arabic link' do
+        @recognizer = IdsPlease.new('https://www.facebook.com/%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%AB%D9%82%D8%A7%D9%81%D9%8A-%D8%A7%D9%84%D9%82%D8%A8%D8%B7%D9%8A-%D8%A7%D9%84%D8%A3%D8%B1%D8%AB%D9%88%D8%B0%D9%83%D8%B3%D9%8A-%D8%A8%D8%A7%D9%84%D9%85%D8%A7%D9%86%D9%8A%D8%A7-179240385797/')
+        expect(@recognizer.grab[:facebook].first.network_id).to eq('179240385797')
+      end
+
       it 'get right id from linkedin link' do
         expect(@recognizer.parsed[:linkedin]).to eq(['xnutsive', 'evil-martians', '12341234'])
       end
