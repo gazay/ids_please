@@ -2,6 +2,7 @@ class IdsPlease
   module Grabbers
     class Vkontakte < IdsPlease::Grabbers::Base
       def grab_link
+        prepare_link
         agent          = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36'
         @page_source ||= open(link, 'User-Agent' => agent).read.encode('utf-8')
         @network_id    = find_by_regex(/href="\/wall(-\d+)_/)
@@ -18,6 +19,11 @@ class IdsPlease
       rescue => e
         record_error __method__, e.message
         return self
+      end
+
+      def prepare_link
+        id = @link.split('/').last
+        @link = "https://new.vk.com/#{id}"
       end
     end
   end
