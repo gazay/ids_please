@@ -22,8 +22,8 @@ class IdsPlease
       end
 
       def prepare_link
-        id = @link.split('/').last
-        @link = "https://new.vk.com/#{id}"
+        id = @link.to_s.split('/').last
+        @link = URI("https://new.vk.com/#{id}")
       end
     end
   end
