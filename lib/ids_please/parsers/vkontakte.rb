@@ -2,7 +2,7 @@ class IdsPlease
   module Parsers
     class Vkontakte < IdsPlease::Parsers::Base
 
-      MASK = /vk\.com|vkontakte/i
+      MASK = /vk\.com|vkontakte|new\.vk\.com/i
 
       class << self
         def interact(links)
