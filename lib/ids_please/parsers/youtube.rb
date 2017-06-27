@@ -6,7 +6,7 @@ class IdsPlease
 
       class << self
         def parse_link(link)
-          if link.path =~ /channels|user/
+          if link.path =~ /channel|user/
             link.path.split('/')[2]
           else
             link.path.split('/')[1]
