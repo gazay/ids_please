@@ -30,7 +30,7 @@ class IdsPlease
       private
 
       def find_network_id
-        find_by_regex(/"id": "(\d+)"/)
+        find_by_regex(/"id":\s?"(\d+)"/)
       rescue => e
         record_error __method__, e.message
         return nil
