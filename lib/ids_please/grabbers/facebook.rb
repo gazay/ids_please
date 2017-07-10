@@ -1,7 +1,6 @@
 class IdsPlease
   module Grabbers
     class Facebook < IdsPlease::Grabbers::Base
-
       def grab_link
         @network_id   = find_network_id
         @avatar       = find_avatar
@@ -35,9 +34,9 @@ class IdsPlease
       end
 
       def find_avatar
-        CGI.unescapeHTML(
-          find_by_regex(/profilePic\simg"\salt=[^=]+="([^"]+)/).encode('utf-8')
-        )
+        _avatar = find_by_regex(/profilePic\simg"\salt=[^=]+="([^"]+)/) ||
+                  find_by_regex(/id="entity_sidebar".+img".+src="([^"]+)/)
+        CGI.unescapeHTML(_avatar.gsub(/amp\;/, '').encode('utf-8')) if _avatar
       rescue => e
         record_error __method__, e.message
         return nil
@@ -61,7 +60,7 @@ class IdsPlease
       end
 
       def find_type
-        find_by_regex(/type":"Person/) ? 'perosnal' : 'group'
+        find_by_regex(/type":"Person/) ? 'personal' : 'group'
       rescue => e
         record_error __method__, e.message
         return nil

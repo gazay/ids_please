@@ -31,7 +31,9 @@ class IdsPlease
       end
 
       def find_avatar
-        "https:#{find_by_regex(/guidedhelpid="profile_photo"><img src="([^"]+)"/)}"
+        _avatar = find_by_regex(/meta itemprop="image" content="([^"]+)/).encode('utf-8')
+        _avatar = "http:#{_avatar}" unless _avatar =~ /\Ahttps?:\/\//
+        _avatar
       rescue => e
         record_error __method__, e.message
         return nil

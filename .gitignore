@@ -1,6 +1,7 @@
 .DS_Store
 *.gem
 *.rbc
+.byebug_history
 /.config
 /coverage/
 /InstalledFiles
