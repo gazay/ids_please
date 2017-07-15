@@ -54,7 +54,6 @@ class IdsPlease
       end
 
       def find_description
-        # find_by_regex(/name="Description" content="([^"]+)">/).encode('utf-8')
         _description = find_by_regex(/og:description" content="([^"]+)"/)
         _description.encode('utf-8') if _description
       rescue => e

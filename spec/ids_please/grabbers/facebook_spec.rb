@@ -13,7 +13,7 @@ describe 'facebook grabber', external: true do
       expect(grabbed.display_name).to be_truthy
       expect(grabbed.username).to be_truthy
       expect(grabbed.network_id).to be_truthy
-      expect(grabbed.link).to be_truthy
+      expect(grabbed.link).to eq URI.parse('https://www.facebook.com/amplifr/')
       expect(grabbed.data).to be_truthy
     end
   end
@@ -29,7 +29,7 @@ describe 'facebook grabber', external: true do
       expect(URI.parse(grabbed.avatar)).to be_truthy
       expect(grabbed.display_name).to be_truthy
       expect(grabbed.username).to be_truthy
-      expect(grabbed.link).to be_truthy
+      expect(grabbed.link).to eq URI.parse('https://www.facebook.com/zuck')
       expect(grabbed.data[:type]).to be_truthy
       expect(grabbed.data[:description]).to be_truthy
     end

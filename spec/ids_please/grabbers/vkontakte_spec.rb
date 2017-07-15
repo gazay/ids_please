@@ -13,7 +13,7 @@ describe 'vk grabber', external: true do
       expect(grabbed.display_name).to be_truthy
       expect(grabbed.username).to be_truthy
       expect(grabbed.network_id).to be_truthy
-      expect(grabbed.link).to be_truthy
+      expect(grabbed.link).to eq URI.parse('https://vk.com/amplifr')
       expect(grabbed.data).to be_truthy
     end
   end
@@ -29,7 +29,7 @@ describe 'vk grabber', external: true do
       expect(URI.parse(grabbed.avatar)).to be_truthy
       expect(grabbed.display_name).to be_truthy
       expect(grabbed.username).to be_truthy
-      expect(grabbed.link).to be_truthy
+      expect(grabbed.link).to eq URI.parse('https://vk.com/id1')
       expect(grabbed.data).to be_truthy
     end
   end
