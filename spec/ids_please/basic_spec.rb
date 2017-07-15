@@ -23,7 +23,7 @@ describe IdsPlease do
     https://plus.google.com/12341234
     https://plus.google.com/+VladimirBokov
     https://soundcloud.com/sc_acc
-    https://youtube.com/channels/yb_acc
+    https://youtube.com/channel/UCUZHFZ9jIKrLroW8LcyJEQQ
     http://tumblr-acc.tumblr.com
     http://odnoklassniki.com/profile/12341234/about
     http://ok.ru/profile/12341234/about
@@ -218,7 +218,7 @@ describe IdsPlease do
       end
 
       it 'get right id from youtube link' do
-        expect(@recognizer.parsed[:youtube].first).to eq('yb_acc')
+        expect(@recognizer.parsed[:youtube].first).to eq('UCUZHFZ9jIKrLroW8LcyJEQQ')
       end
 
       it 'get right id from ameba link' do
