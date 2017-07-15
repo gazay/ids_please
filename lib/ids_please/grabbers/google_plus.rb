@@ -24,7 +24,7 @@ class IdsPlease
       end
 
       def find_network_id
-        find_by_regex(/oid="(\d+)"/)
+        link.path.split('/').last
       rescue => e
         record_error __method__, e.message
         return nil
@@ -54,7 +54,8 @@ class IdsPlease
       end
 
       def find_description
-        find_by_regex(/name="Description" content="([^"]+)">/).encode('utf-8')
+        _description = find_by_regex(/og:description" content="([^"]+)"/)
+        _description.encode('utf-8') if _description
       rescue => e
         record_error __method__, e.message
         return nil

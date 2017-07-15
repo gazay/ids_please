@@ -3,14 +3,14 @@ require 'json'
 class IdsPlease
   module Grabbers
     class Mailru < IdsPlease::Grabbers::Base
-
       def grab_link
         @page_source  ||= open(link).read.encode('utf-8')
-        uid_url         = "http://appsmail.ru/platform/#{link.split('/')[-2..-1].join('/')}"
+        uid_url         = "http://appsmail.ru/platform/#{link.path.gsub(/(^\/)|(\/$)/, '')}"
         @network_id     = JSON.parse(open(uid_url).read)['uid']
         @username, type = get_name_and_type(link)
-        @avatar         = find_by_regex(/profile__avatar" src="([^"]+)/)
-        @display_name   = find_by_regex(/h1.+title="([^"]+)/)
+
+        @avatar         = find_by_regex(/b-history-event__avatar ui-lazy-background\s?".+url\(([^)]+)/)
+        @display_name   = find_by_regex(/h1.+title="([^"]+)/) || find_by_regex(/h1\s+itemprop="name"\s+title="([^"]+)/)
         @display_name   = CGI.unescapeHTML(@display_name) if @display_name
         @data = {
           type: type,
@@ -27,7 +27,7 @@ class IdsPlease
 
       def get_name_and_type(link)
         ind = -1
-        splitted = link.split('/')
+        splitted = link.path.gsub(/(^\/)|(\/$)/, '').split('/')
         type = 'user'
         splitted.each_with_index do |part, i|
           if part == 'community'
