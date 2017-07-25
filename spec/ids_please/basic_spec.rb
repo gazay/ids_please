@@ -4,6 +4,8 @@ describe IdsPlease do
   recognazible_links = %w(
     https://www.facebook.com/fb_acc
     https://facebook.com/fb_acc2<U+200>
+    https://www.facebook.com/pages/fb_pages_page
+    https://www.facebook.com/pg/fb_pg_page/posts
     http://instagram.com/inst_acc
     http://hi5.com/hi5_acc
     http://www.hi5.com/profile.html?uid=12341234
@@ -62,7 +64,7 @@ describe IdsPlease do
       end
 
       it 'recognizes facebook link' do
-        expect(@recognizer.recognized[:facebook].count).to eq(2)
+        expect(@recognizer.recognized[:facebook].count).to eq(4)
       end
 
       it 'recognizes hi5 link' do
@@ -165,7 +167,7 @@ describe IdsPlease do
       end
 
       it 'get right id from facebook link' do
-        expect(@recognizer.parsed[:facebook]).to eq(%w(fb_acc fb_acc2))
+        expect(@recognizer.parsed[:facebook]).to eq(%w(fb_acc fb_acc2 fb_pages_page fb_pg_page))
       end
 
       it 'get right id from facebook Arabic link' do
