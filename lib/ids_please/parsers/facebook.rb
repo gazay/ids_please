@@ -12,6 +12,8 @@ class IdsPlease
             query['id'].first
           elsif link.path =~ /\/pages\//
             link.path.split('/').last
+          elsif link.path =~ /\/pg\//
+            link.path.split('/pg/')[1].split('/')[0]
           else
             link.path.split('/')[1]
           end
